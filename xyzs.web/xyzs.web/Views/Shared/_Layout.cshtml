@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- 页面样式表 -->
+    <meta charset="utf-8" />
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "首页" : ViewBag.Title)</title>
+    <meta name="description" content="小杨装饰" />
+    <meta name="keywords" content="装修哪里好？|装修|装饰" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="@(ViewBag.RootNode)/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="@(ViewBag.RootNode)/Content/css/default.min.css?t=227" />
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script type="text/javascript" src="@(ViewBag.RootNode)/Content/lib/jquery/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+        <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+        <script src="@(ViewBag.RootNode)/Content/lib/amazeui/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    @RenderSection("css", false)
+</head>
+<body>
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+    @RenderSection("Script", false)
+</body>
+</html>

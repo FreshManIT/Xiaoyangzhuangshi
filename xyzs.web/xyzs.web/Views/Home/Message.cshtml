@@ -1,0 +1,55 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "留言";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
+    <ul class="am-slides">
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+    </ul>
+</div>
+<div>
+    <header class="header-article-list">
+        <h1>在线留言</h1>
+
+    </header>
+    <div>
+        <form class="message-form" method="post">
+
+            <label>
+                姓名
+                <input type="text" name="username">
+                <span>*</span>
+            </label>
+
+
+            <label>
+                电话
+                <input type="text" name="tel">
+                <span>*</span>
+            </label>
+
+
+            <label>
+                邮箱
+                <input type="email" name="email">
+                <span>*</span>
+            </label>
+
+
+            <label>
+                内容
+                <textarea></textarea>
+                <span>*</span>
+            </label>
+
+
+            <button type="button" class="am-btn am-btn-danger">提交</button>
+        </form>
+    </div>
+</div>

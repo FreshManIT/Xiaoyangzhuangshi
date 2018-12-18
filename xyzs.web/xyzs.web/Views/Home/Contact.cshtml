@@ -1,0 +1,43 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "小杨装饰-联系我们";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
+    <ul class="am-slides">
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
+    </ul>
+</div>
+<div>
+    <header class="header-article-list">
+        <div class="contact-left">联系我们</div>
+        <div class="contact-right">
+            <a href="@Url.Action("Index","Home")">首页 </a>&#62;<a href="#">联系我们</a>
+        </div>
+    </header>
+
+    <main class="contact">
+        <iframe src="@Url.Action("Map","Home")" width="636" height="378" frameborder="0" scrolling="no"></iframe>
+        <ul>
+            <li>
+                <span><img src="@(ViewBag.RootNode)/Content/images/contact1.png" /></span>
+                <h2>联系我们</h2>
+                <p>电话:0714-457878</p>
+            </li>
+            <li>
+                <span><img src="@(ViewBag.RootNode)/Content/images/contact2.png" /></span>
+                <h2>公司地址</h2>
+                <p>地址:湖北省大冶市大冶大道116号金穗小区B栋201号</p>
+            </li>
+            <li>
+                <span><img src="@(ViewBag.RootNode)/Content/images/contact3.png" /></span>
+                <h2>电子邮箱</h2>
+                <p>邮箱:123@dayeyunalading.com</p>
+            </li>
+        </ul>
+    </main>
+</div>

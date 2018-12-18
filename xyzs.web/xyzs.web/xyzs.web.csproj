@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E1D64EF-248D-4D7D-9885-D0CF14BBC148}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xyzs.web</RootNamespace>
+    <AssemblyName>xyzs.web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FreshCommonUtilityNet, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreshCommonUtilityNet.1.2.0.0\lib\net45\FreshCommonUtilityNet.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\FreshCommonUtilityNet.1.2.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.2.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.1.608.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.1.608\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.1\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\default.css" />
+    <Content Include="Content\css\default.min.css" />
+    <Content Include="Content\images\address.png" />
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\banner2.jpg" />
+    <Content Include="Content\images\banner3.jpg" />
+    <Content Include="Content\images\banner4.jpg" />
+    <Content Include="Content\images\case.png" />
+    <Content Include="Content\images\chair.png" />
+    <Content Include="Content\images\chairs.png" />
+    <Content Include="Content\images\contact.jpg" />
+    <Content Include="Content\images\contact.png" />
+    <Content Include="Content\images\contact1.png" />
+    <Content Include="Content\images\contact2.png" />
+    <Content Include="Content\images\contact3.png" />
+    <Content Include="Content\images\creativity.png" />
+    <Content Include="Content\images\creativitys.png" />
+    <Content Include="Content\images\email.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\message.png" />
+    <Content Include="Content\images\next.png" />
+    <Content Include="Content\images\nexts.png" />
+    <Content Include="Content\images\prev.png" />
+    <Content Include="Content\images\prevs.png" />
+    <Content Include="Content\images\pro1.png" />
+    <Content Include="Content\images\procarousel.png" />
+    <Content Include="Content\images\product1.png" />
+    <Content Include="Content\images\product11.png" />
+    <Content Include="Content\images\product2.png" />
+    <Content Include="Content\images\product3.png" />
+    <Content Include="Content\images\productlogo.png" />
+    <Content Include="Content\images\proimg.jpg" />
+    <Content Include="Content\images\qccode.png" />
+    <Content Include="Content\images\search-button.png" />
+    <Content Include="Content\images\sectionbanner.png" />
+    <Content Include="Content\images\slogan.png" />
+    <Content Include="Content\images\sofa.png" />
+    <Content Include="Content\images\sofas.png" />
+    <Content Include="Content\images\table.png" />
+    <Content Include="Content\images\tables.png" />
+    <Content Include="Content\images\team1.png" />
+    <Content Include="Content\images\team2.png" />
+    <Content Include="Content\images\team3.png" />
+    <Content Include="Content\images\team4.png" />
+    <Content Include="Content\images\tel.png" />
+    <Content Include="Content\js\easyzoom.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\main.min.js" />
+    <Content Include="Content\lib\amazeui\amazeui.ie8polyfill.js" />
+    <Content Include="Content\lib\amazeui\amazeui.ie8polyfill.min.js" />
+    <Content Include="Content\lib\amazeui\amazeui.js" />
+    <Content Include="Content\lib\amazeui\amazeui.min.js" />
+    <Content Include="Content\lib\amazeui\amazeui.widgets.helper.js" />
+    <Content Include="Content\lib\amazeui\amazeui.widgets.helper.min.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars.runtime.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\base.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\ast.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\base.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\code-gen.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\compiler.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\helpers.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\javascript-compiler.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\parser.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\printer.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\visitor.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\compiler\whitespace-control.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\decorators.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\decorators\inline.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\exception.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\block-helper-missing.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\each.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\helper-missing.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\if.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\log.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\lookup.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\helpers\with.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\logger.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\no-conflict.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\runtime.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\safe-string.js" />
+    <Content Include="Content\lib\handlebars\amd\handlebars\utils.js" />
+    <Content Include="Content\lib\handlebars\amd\precompiler.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars.runtime.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\base.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\ast.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\base.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\code-gen.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\compiler.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\helpers.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\javascript-compiler.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\parser.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\printer.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\visitor.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\compiler\whitespace-control.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\decorators.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\decorators\inline.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\exception.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\block-helper-missing.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\each.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\helper-missing.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\if.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\log.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\lookup.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\helpers\with.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\logger.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\no-conflict.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\runtime.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\safe-string.js" />
+    <Content Include="Content\lib\handlebars\cjs\handlebars\utils.js" />
+    <Content Include="Content\lib\handlebars\cjs\precompiler.js" />
+    <Content Include="Content\lib\handlebars\handlebars.amd.js" />
+    <Content Include="Content\lib\handlebars\handlebars.amd.min.js" />
+    <Content Include="Content\lib\handlebars\handlebars.js" />
+    <Content Include="Content\lib\handlebars\handlebars.min.js" />
+    <Content Include="Content\lib\handlebars\handlebars.runtime.amd.js" />
+    <Content Include="Content\lib\handlebars\handlebars.runtime.amd.min.js" />
+    <Content Include="Content\lib\handlebars\handlebars.runtime.js" />
+    <Content Include="Content\lib\handlebars\handlebars.runtime.min.js" />
+    <Content Include="Content\lib\iscroll\iscroll-infinite.js" />
+    <Content Include="Content\lib\iscroll\iscroll-lite.js" />
+    <Content Include="Content\lib\iscroll\iscroll-probe.js" />
+    <Content Include="Content\lib\iscroll\iscroll-zoom.js" />
+    <Content Include="Content\lib\iscroll\iscroll.js" />
+    <Content Include="Content\lib\jquery\core.js" />
+    <Content Include="Content\lib\jquery\jquery.js" />
+    <Content Include="Content\lib\jquery\jquery.min.js" />
+    <Content Include="Content\lib\jquery\jquery.slim.js" />
+    <Content Include="Content\lib\jquery\jquery.slim.min.js" />
+    <Content Include="Content\lib\raty\fonts\raty.svg" />
+    <Content Include="Content\lib\raty\images\cancel-off.png" />
+    <Content Include="Content\lib\raty\images\cancel-on.png" />
+    <Content Include="Content\lib\raty\images\star-half.png" />
+    <Content Include="Content\lib\raty\images\star-off.png" />
+    <Content Include="Content\lib\raty\images\star-on.png" />
+    <Content Include="Content\lib\raty\jquery.raty.css" />
+    <Content Include="Content\lib\raty\jquery.raty.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Data\Config\AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\css\default.min.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\js\main.min.js.map" />
+    <Content Include="Content\lib\jquery\jquery.min.map" />
+    <Content Include="Content\lib\jquery\jquery.slim.min.map" />
+    <Content Include="Content\lib\raty\fonts\raty.eot" />
+    <Content Include="Content\lib\raty\fonts\raty.ttf" />
+    <Content Include="Content\lib\raty\fonts\raty.woff" />
+    <None Include="packages.config" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\ProductList.cshtml" />
+    <Content Include="Views\Home\ProductDetails.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\xyzs.common\xyzs.common.csproj">
+      <Project>{406F7D83-5B72-42F3-B3D3-AA9BE8BA106D}</Project>
+      <Name>xyzs.common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\xyzs.service\xyzs.service.csproj">
+      <Project>{ADCF7063-BC7A-43E7-8463-CB3CDC8DC158}</Project>
+      <Name>xyzs.service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2893</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2893/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.1\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.1\build\net45\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.1\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.1\build\net45\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,36 @@
+﻿<header style="margin-top: 25px;">
+    <div class="header-top">
+        <div class="width-center">
+            <div class="header-logo "><img src="@(ViewBag.RootNode)/Content/images/logo.png" alt=""></div>
+            <div class="header-title div-inline">
+                <strong>重庆小杨装饰公司</strong>
+                <span>www.xiaoyangzhuangshi.cn</span>
+            </div>
+
+            <div class="search-box div-inline">
+                <div class="input-box"><input type="text" name="" placeholder="请输入关键字"></div>
+                <div class="search-botton"></div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav">
+        <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">
+            Menu <i class="am-icon-bars"></i>
+        </button>
+        <nav>
+            <ul class="header-nav-ul am-collapse am-in">
+                <li class="on"><a href="@Url.Action("Index","Home")" name="index">首页</a></li>
+                <li><a href="@Url.Action("About","Home")" name="about">关于我们</a></li>
+                <li><a href="@Url.Action("ProductList","Home")" name="show">案例展示</a></li>
+                <li><a href="article_list.html" name="new">新闻资讯</a></li>
+                <li>
+                    <a href="@Url.Action("Contact","Home")" name="message">联系我们</a>
+                    <div class="secondary-menu">
+
+                        <ul><li><a href="@Url.Action("Message","Home")" class="message"></a></li></ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
