@@ -29,7 +29,21 @@ namespace xyzs.common.EnumBusiness
         /// 管理员列表
         /// </summary>
         [Description("管理员列表")]
-        MenuUsers=1004,
+        MenuUsers = 1004,
+        #endregion
+
+        #region [2、内容管理]
+        /// <summary>
+        /// 内容管理
+        /// </summary>
+        [Description("内容管理")]
+        ContentManage=2001,
+
+        /// <summary>
+        /// 内容编辑
+        /// </summary>
+        [Description("内容编辑")]
+        ContentEditPage=2002,
         #endregion
     }
 }

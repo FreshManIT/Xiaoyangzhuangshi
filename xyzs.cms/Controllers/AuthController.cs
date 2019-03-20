@@ -19,12 +19,23 @@ namespace xyzs.cms.Controllers
     {
         private readonly AccountService _accountService = new AccountService();
 
+        /// <summary>
+        /// 登录页面
+        /// </summary>
+        /// <returns></returns>
         [AuthorizeIgnore]
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="checkcode"></param>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeIgnore]
         public ActionResult Login(string username, string password,string checkcode)
@@ -75,6 +86,10 @@ namespace xyzs.cms.Controllers
             return RedirectToAction("Login");
         }
 
+        /// <summary>
+        /// 404页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult O404()
         {
             return View("404");

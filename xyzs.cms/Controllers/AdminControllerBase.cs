@@ -75,6 +75,7 @@ namespace xyzs.cms.Controllers
                 return null;
             }
         }
+
         #region Override controller methods
         /// <summary>
         /// 方法执行前，如果没有登录就调整到Passport登录页面，没有权限就抛出信息
@@ -88,7 +89,7 @@ namespace xyzs.cms.Controllers
 
             base.OnActionExecuting(filterContext);
 
-            if (this.CurrentModel == null)
+            if (CurrentModel == null)
             {
                 filterContext.Result = RedirectToAction("Login", "Auth");
                 return;
@@ -105,7 +106,7 @@ namespace xyzs.cms.Controllers
                 {
                     foreach (var permission in attr.Permissions)
                     {
-                        if (!this.CurrentModel.BusinessPermissionList.Contains(permission))
+                        if (!CurrentModel.BusinessPermissionList.Contains(permission))
                         {
                             hasPermission = false;
                             break;
@@ -116,7 +117,7 @@ namespace xyzs.cms.Controllers
                 if (!hasPermission)
                 {
                     if (Request.UrlReferrer != null)
-                        filterContext.Result = this.Stop("没有权限！", Request.UrlReferrer.AbsoluteUri);
+                        filterContext.Result = Stop("没有权限！", Request.UrlReferrer.AbsoluteUri);
                     else
                         filterContext.Result = Content("没有权限！");
                 }

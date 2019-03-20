@@ -65,7 +65,7 @@ namespace xyzs.service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SysUser GetSysUser(int id)
+        public SysUser GetSysUser(long id)
         {
             return _accountData.GetSysUser(id);
         }

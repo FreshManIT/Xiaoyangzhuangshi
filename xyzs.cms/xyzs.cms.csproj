@@ -153,6 +153,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminControllerBase.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionAttribute.cs" />
@@ -358,6 +359,7 @@
     <Content Include="Content\Images\rewind.png" />
     <Content Include="Content\Images\shuffle.png" />
     <Content Include="Content\Images\volume.png" />
+    <Content Include="Content\Scripts\Content\contentedit.js" />
     <Content Include="Content\Scripts\SysSet\menuadmin.js" />
     <Content Include="Content\Scripts\SysSet\menuset.js" />
     <Content Include="Content\Scripts\SysSet\menuusers.js" />
@@ -692,6 +694,7 @@
     <Content Include="Views\SysSet\MenuSet.cshtml" />
     <Content Include="Views\SysSet\MenuUsers.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Content\ContentEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">

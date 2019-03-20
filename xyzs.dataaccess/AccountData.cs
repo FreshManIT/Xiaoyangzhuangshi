@@ -117,7 +117,7 @@ namespace xyzs.dataaccess
         /// <param name="userId"></param>
         /// <param name="authorityList"></param>
         /// <returns></returns>
-        public List<SysMenuModel> GetMenuList(int userId, ref List<int> authorityList)
+        public List<SysMenuModel> GetMenuList(long userId, ref List<int> authorityList)
         {
             if (userId < 1)
             {
@@ -199,7 +199,7 @@ namespace xyzs.dataaccess
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SysUser GetSysUser(int id)
+        public SysUser GetSysUser(long id)
         {
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
