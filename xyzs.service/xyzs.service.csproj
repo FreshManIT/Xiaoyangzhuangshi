@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="ContentService.cs" />
     <Compile Include="DbLinkTestService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
