@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using FreshCommonUtility.Web;
 using xyzs.common.EnumBusiness;
 using xyzs.model;
 using xyzs.model.DatabaseModel;
@@ -18,6 +14,7 @@ namespace xyzs.cms.Controllers
     [Permission(EnumBusinessPermission.ContentManage)]
     public class ContentController : AdminControllerBase
     {
+        #region [1、内容编辑]
         /// <summary>
         /// 内容编辑页面
         /// </summary>
@@ -107,5 +104,75 @@ namespace xyzs.cms.Controllers
             resultMode.Message = "处理失败";
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
+
+        #endregion
+
+        #region [2、内容列表]
+        /// <summary>
+        /// 内容列表
+        /// </summary>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ContentEditList)]
+        public ActionResult ContentList()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 获取内容项
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="title"></param>
+        /// <param name="starttime"></param>
+        /// <param name="endtime"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentSource"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ContentEditList)]
+        public ActionResult GetList(int pageIndex, int pageSize = 0, string title = null, string starttime = null, string endtime = null, int contentType = 0, string contentSource = null)
+        {
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+
+            pageSize = pageSize < 1 ? PageSize : pageSize;
+            var dataList = new ContentService().GetList(title, starttime, endtime, contentType, contentSource, pageIndex, pageSize, out var count);
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功",
+                Data = new { count, dataList }
+            };
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 删除内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ContentEditList)]
+        public ActionResult DeleteId(int id)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var menuServer = new ContentService();
+            try
+            {
+                menuServer.DelModel(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

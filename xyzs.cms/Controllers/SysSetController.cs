@@ -474,5 +474,33 @@ namespace xyzs.cms.Controllers
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        #region [4、字典处理]
+
+        /// <summary>
+        /// 获取字典信息
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="lable"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ActionResult GetDicList(int pageIndex, int pageSize = 0, string lable = null, string type = null)
+        {
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+            pageSize = pageSize < 1 ? PageSize : pageSize;
+            var dataList = new SysDicService().GetList(lable, type, pageIndex, pageSize, out var count);
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功",
+                Data = new { count, dataList }
+            };
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

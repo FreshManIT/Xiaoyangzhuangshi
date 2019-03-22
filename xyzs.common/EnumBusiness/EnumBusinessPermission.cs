@@ -44,6 +44,12 @@ namespace xyzs.common.EnumBusiness
         /// </summary>
         [Description("内容编辑")]
         ContentEditPage=2002,
+
+        /// <summary>
+        /// 内容列表
+        /// </summary>
+        [Description("内容列表")]
+        ContentEditList=2003,
         #endregion
     }
 }

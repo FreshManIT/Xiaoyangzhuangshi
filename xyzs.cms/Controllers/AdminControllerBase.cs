@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -168,6 +169,38 @@ namespace xyzs.cms.Controllers
             base.OnResultExecuted(filterContext);
         }
 
+        /// <summary>
+        /// 重写Json方法
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentEncoding"></param>
+        /// <returns></returns>
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding)
+        {
+            return new VMEJsonResult { Data = data, ContentType = contentType, ContentEncoding = contentEncoding };
+        }
+
+        /// <summary>
+        /// 重写Json方法
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="jsonRequest"></param>
+        /// <returns></returns>
+        public new JsonResult Json(object data, JsonRequestBehavior jsonRequest)
+        {
+            return new VMEJsonResult { Data = data, JsonRequestBehavior = jsonRequest };
+        }
+
+        /// <summary>
+        /// 重写Json方法
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new JsonResult Json(object data)
+        {
+            return new VMEJsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
         #endregion
 
         #region initialization

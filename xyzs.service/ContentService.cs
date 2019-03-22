@@ -1,4 +1,5 @@
-﻿using xyzs.dataaccess;
+﻿using System.Collections.Generic;
+using xyzs.dataaccess;
 using xyzs.model.DatabaseModel;
 
 namespace xyzs.service
@@ -8,6 +9,11 @@ namespace xyzs.service
     /// </summary>
     public class ContentService
     {
+        /// <summary>
+        /// 数据服务
+        /// </summary>
+        private SysContentData _dataAccess = new SysContentData();
+
         /// <summary>
         /// 获取单个的菜单信息
         /// </summary>
@@ -20,7 +26,7 @@ namespace xyzs.service
                 return null;
             }
 
-            return new SysContentData().GetContentModel(id);
+            return _dataAccess.GetContentModel(id);
         }
 
         /// <summary>
@@ -31,7 +37,38 @@ namespace xyzs.service
         public long AddAndUpdateContentInfo(Syscontent model)
         {
             if (model == null) return 0;
-            return new SysContentData().AddAndUpdateContentInfo(model);
+            return _dataAccess.AddAndUpdateContentInfo(model);
+        }
+
+        /// <summary>
+        /// 获取内容
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="starttime"></param>
+        /// <param name="endtime"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentSource"></param>
+        /// <param name="indexPage"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<Syscontent> GetList(string title, string starttime , string endtime , int contentType, string contentSource ,int indexPage, int pageSize, out int count)
+        {
+            count = _dataAccess.GetCount(title,starttime,endtime,contentType,contentSource);
+            return _dataAccess.GetModels(title, starttime, endtime, contentType, contentSource,indexPage, pageSize);
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        public void DelModel(int id)
+        {
+            if (id < 1)
+            {
+                return;
+            }
+            _dataAccess.DelModel(id);
         }
     }
 }
