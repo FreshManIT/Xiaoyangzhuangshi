@@ -478,27 +478,173 @@ namespace xyzs.cms.Controllers
         #region [4、字典处理]
 
         /// <summary>
+        /// 字典管理页面
+        /// </summary>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult SysDicManage()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 获取字典信息
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
-        /// <param name="lable"></param>
+        /// <param name="label"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public ActionResult GetDicList(int pageIndex, int pageSize = 0, string lable = null, string type = null)
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult GetDicList(int pageIndex, int pageSize = 0, string label = null, string type = null)
         {
             if (pageIndex < 1)
             {
                 pageIndex = 1;
             }
             pageSize = pageSize < 1 ? PageSize : pageSize;
-            var dataList = new SysDicService().GetList(lable, type, pageIndex, pageSize, out var count);
+            var dataList = new SysDicService().GetList(label, type, pageIndex, pageSize, out var count);
             var resultMode = new ResponseBaseModel<dynamic>
             {
                 ResultCode = ResponceCodeEnum.Success,
                 Message = "响应成功",
                 Data = new { count, dataList }
             };
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 获取所有的分类信息
+        /// </summary>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult GetAllDicType()
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysDicService();
+            var data = server.GetAllDict();
+            resultMode.Data = new
+            {
+                typeList = data?.Select(f => new
+                {
+                    f.Type
+                }).Distinct().ToList(),
+                parentList = data?.Select(r => new
+                {
+                    r.Id,
+                    r.Lable
+                }).Distinct().ToList()
+            };
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 删除字典
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult DelDicModel(string id)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysDicService();
+            try
+            {
+                server.DelModel(id);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+            }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 保存字典信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult SaveDicInfo(SysdictModel model)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysDicService();
+            var saveModel = new SysdictModel();
+            if (model == null)
+            {
+                Debug.WriteLine("请求参数为空");
+                resultMode.Message = "保存失败";
+                resultMode.ResultCode = ResponceCodeEnum.Fail;
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            if (!string.IsNullOrEmpty(model.Id))
+            {
+                saveModel = server.Get(model.Id);
+                if (saveModel == null)
+                {
+                    resultMode.Message = "该记录已经被删除";
+                    resultMode.ResultCode = ResponceCodeEnum.Fail;
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                saveModel.CreateBy = CurrentModel.Id.ToString();
+                saveModel.CreateTime = DateTime.Now;
+            }
+
+            saveModel.Id = model.Id;
+            saveModel.IsDel = FlagEnum.HadZore.GetHashCode();
+            saveModel.Lable = model.Lable;
+            saveModel.Type = model.Type;
+            saveModel.Description = model.Description;
+            saveModel.ParentId = model.ParentId;
+            saveModel.Remarks = model.Remarks;
+            saveModel.Value = model.Value;
+            saveModel.Sort = model.Sort;
+            try
+            {
+                server.SaveModel(saveModel);
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                resultMode.Message = "保存失败";
+                resultMode.ResultCode = ResponceCodeEnum.Fail;
+                resultMode.Data = e.Message;
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// 获取字典信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.SysDicManage)]
+        public ActionResult GetDicModel(string id)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysDicService();
+            var data = server.Get(id);
+            resultMode.Data = data;
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
         #endregion

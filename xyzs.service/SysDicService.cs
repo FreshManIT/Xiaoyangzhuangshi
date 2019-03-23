@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using xyzs.common.EnumBusiness;
 using xyzs.dataaccess;
 using xyzs.model.DatabaseModel;
 
@@ -31,6 +32,47 @@ namespace xyzs.service
         {
             count = _dataAccess.GetCount(label, type);
             return _dataAccess.GetModels(label, type, indexPage, pageSize);
+        }
+
+        /// <summary>
+        /// 获取所有的字典数据
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public List<SysdictModel> GetAllDict(string type = null)
+        {
+            return _dataAccess.GetAllDicType(type);
+        }
+
+        /// <summary>
+        /// 删除字典记录
+        /// </summary>
+        /// <param name="id"></param>
+        public void DelModel(string id)
+        {
+            _dataAccess.DelModel(id);
+        }
+
+        /// <summary>
+        /// 获取单个字典数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public SysdictModel Get(string id)
+        {
+            var data=_dataAccess.Get(id);
+            if (data == null || data.IsDel==FlagEnum.HadOne.GetHashCode()) return null;
+            return data;
+
+        }
+
+        /// <summary>
+        /// 保存信息
+        /// </summary>
+        /// <param name="saveModel"></param>
+        public void SaveModel(SysdictModel saveModel)
+        {
+            _dataAccess.SaveModel(saveModel);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace xyzs.model.DatabaseModel
         /// Id 
         /// </summary>
         [Key]
+        [Required]
         public String Id { get; set; }
         /// <summary>
         /// Value 字典值

@@ -52,6 +52,6 @@ namespace xyzs.model.DatabaseModel
         /// <summary>
         /// ContentType 内容类型，关联文章类型
         /// </summary>
-        public Int32 ContentType { get; set; }
+        public string ContentType { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using xyzs.common.EnumBusiness;
 using xyzs.model;
@@ -105,6 +106,27 @@ namespace xyzs.cms.Controllers
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 获取内容的配置信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetContentType()
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysDicService();
+            var data = server.GetAllDict("ContentType");
+            resultMode.Data = data?.Select(f => new
+            {
+                f.Id,
+                f.Lable,
+                f.Type
+            }).Distinct().ToList();
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region [2、内容列表]

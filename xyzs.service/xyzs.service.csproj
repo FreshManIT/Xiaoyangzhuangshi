@@ -48,6 +48,10 @@
     <Compile Include="SysDicService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">
+      <Project>{406F7D83-5B72-42F3-B3D3-AA9BE8BA106D}</Project>
+      <Name>xyzs.common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\xyzs.dataaccess\xyzs.dataaccess.csproj">
       <Project>{1DBC4264-2360-4FD5-8467-5A8B57E10EE7}</Project>
       <Name>xyzs.dataaccess</Name>

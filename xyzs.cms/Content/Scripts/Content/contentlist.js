@@ -1,7 +1,8 @@
 ﻿var resultVm = new Vue({
     el: '#resultTable',
     data: {
-        dataList: []
+        dataList: [],
+        contentTypeNum: []
     },
     computed: {},
     methods: {
@@ -10,6 +11,15 @@
         },
         vueDelContent: function (id) {
             delContent(id);
+        },
+        vueTypeContent: function (typecode) {
+            var data = this.contentTypeNum.filter(function (item) {
+                return item.Id == typecode;
+            });
+            if (data && data.length > 0) {
+                return data[0].Lable;
+            }
+            return "未知";
         }
     }
 });
@@ -35,7 +45,7 @@ var searchVm = new Vue({
             contentSource: '',
             pageIndex: 1
         },
-        contentTypeNum:[]
+        contentTypeNum: []
     }
 });
 
@@ -43,7 +53,8 @@ var searchVm = new Vue({
  * 获取菜单信息
  */
 function LoadingActivityResultDetailDate() {
-    var index = layer.load();
+    //取消加载
+    $(".loading-container").removeClass("loading-inactive");
     searchVm.$data.model.pageIndex = $("#currentPageIndex").val();
     $.ajax({
         url: "/Content/GetList",
@@ -59,9 +70,10 @@ function LoadingActivityResultDetailDate() {
             else {
                 layer.msg('查询失败');
             }
+            //取消加载
+            $(".loading-container").addClass("loading-inactive");
         }
     });
-    layer.close(index);
 }
 
 /*
@@ -115,4 +127,26 @@ function delContent(id) {
 function editContent(id) {
     window.location.href = "/Content/ContentEdit?id=" + id;
 }
-LoadingActivityResultDetailDate();
+
+/**
+ * 获取文章类型
+ */
+function getTypeList() {
+    $.ajax({
+        url: "/Content/GetContentType",
+        type: "POST",
+        success: function (data) {
+            if (data && data.ResultCode == 0) {
+                searchVm.$data.contentTypeNum = data.Data;
+                resultVm.$data.contentTypeNum = data.Data;
+            }
+        }
+    });
+}
+/**
+初始化页面
+*/
+$(document).ready(function () {
+    getTypeList();
+    LoadingActivityResultDetailDate();
+});

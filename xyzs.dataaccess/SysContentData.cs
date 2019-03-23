@@ -94,7 +94,7 @@ namespace xyzs.dataaccess
             };
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
-                return conn.GetListPaged<Syscontent>(pageIndex, pageSize, where.ToString(), null, param)?.ToList();
+                return conn.GetListPaged<Syscontent>(pageIndex, pageSize, where.ToString(), " CreateTime desc ", param)?.ToList();
             }
         }
 

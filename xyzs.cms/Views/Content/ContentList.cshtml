@@ -26,10 +26,10 @@
                     </label>
                     <label>
                         类型：
-                        <select class="form-control input-sm" style="width: 75px"
+                        <select class="form-control input-sm" style="min-width: 150px"
                                 name="contentType" v-model="model.contentType">
-                            <option v-for="item in contentTypeNum" v-bind:value="item.id">
-                                {{item.name}}
+                            <option v-for="item in contentTypeNum" v-bind:value="item.Id">
+                                {{item.Lable}}
                             </option>
                         </select>
                     </label>
@@ -66,7 +66,7 @@
                 <tbody>
                     <tr class="control-center" v-for="item of dataList">
                         <td>{{item.Title}}</td>
-                        <td>{{item.ContentType}}</td>
+                        <td>{{vueTypeContent(item.ContentType)}}</td>
                         <td>{{item.ContentSource}}</td>
                         <td>{{item.CreateTime}}</td>
                         <td>

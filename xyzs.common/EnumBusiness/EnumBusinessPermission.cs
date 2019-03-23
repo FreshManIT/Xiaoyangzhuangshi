@@ -30,6 +30,12 @@ namespace xyzs.common.EnumBusiness
         /// </summary>
         [Description("管理员列表")]
         MenuUsers = 1004,
+
+        /// <summary>
+        /// 字典管理
+        /// </summary>
+        [Description("字典管理")]
+        SysDicManage=1005,
         #endregion
 
         #region [2、内容管理]
