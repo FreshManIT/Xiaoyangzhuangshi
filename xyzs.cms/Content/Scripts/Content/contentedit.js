@@ -72,9 +72,7 @@ function getContentInfo() {
             if (data && data.ResultCode == 0) {
                 detailVm.$data.content_model = data.Data;
                 //初始化编辑器内容
-                UE.getEditor('shareContent').addListener("ready", function () {
-                    UE.getEditor('shareContent').setContent(detailVm.$data.content_model.Content);
-                });
+                ue.setContent(detailVm.$data.content_model.Content);
             }
             else {
                 layer.msg('查询失败');
