@@ -4,7 +4,7 @@
         <div class="navbar-container">
             <!-- Navbar Barnd -->
             <div class="navbar-header pull-left">
-                <a href="#" class="navbar-brand">
+                <a href="@Url.Action("WelCome","Home")" class="navbar-brand">
                     <small style="text-align: -webkit-center">
                         @*<img src="@(ViewBag.RootNode)/assets/img/logo.png" alt="" />*@
                         @*<img src="@(ViewBag.RootNode)/content/images/logo-big.png" />*@
@@ -68,7 +68,7 @@
                                     <div class="avatar-area">
                                         <img :src="headUrl" class="avatar">
                                         <span v-on:click="fileClick" class="caption">修改头像</span>
-                                        <input v-on:change="fileChange($event)"  accept=".png,.jpg,.gif,.jpeg" type="file" id="upload_file" style="display: none">
+                                        <input v-on:change="fileChange($event)" accept=".png,.jpg,.gif,.jpeg" type="file" id="upload_file" style="display: none">
                                     </div>
                                 </li>
                                 <!--Theme Selector Area-->
