@@ -49,5 +49,9 @@ namespace xyzs.model
         /// 员工编号
         /// </summary>
         public string JobNumber { get; set; }
+        /// <summary>
+        /// HeadUrl 头像地址
+        /// </summary>
+        public string HeadUrl { get; set; }
     }
 }

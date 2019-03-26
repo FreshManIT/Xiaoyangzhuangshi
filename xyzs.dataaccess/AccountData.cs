@@ -47,6 +47,7 @@ namespace xyzs.dataaccess
             userInfo.UserId = u.Id;
             userInfo.LoginName = userName;
             userInfo.TrueName = u.TrueName;
+            userInfo.HeadUrl = u.HeadUrl;
             userInfo.DepartName = string.Empty;
             userInfo.JobNumber = string.Empty;
             return userInfo;
