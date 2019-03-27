@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 26/03/2019 16:16:10
+ Date: 27/03/2019 17:30:21
 */
 
 SET NAMES utf8mb4;
@@ -93,6 +93,22 @@ INSERT INTO `sysmenumodel` VALUES (6, 'ContentManage', '内容管理', 'fa-coffe
 INSERT INTO `sysmenumodel` VALUES (7, 'ContentEditPage', '内容编辑', NULL, '/Content/ContentEdit', '5', '2002', NULL, b'00000000', 6, 0);
 INSERT INTO `sysmenumodel` VALUES (8, 'ContentEditList', '内容列表', NULL, '/Content/ContentList', '6', '2003', NULL, b'00000000', 6, 0);
 INSERT INTO `sysmenumodel` VALUES (9, 'SysDicManage', '字典配置', NULL, '/SysSet/SysDicManage', '7', '1005', NULL, b'00000000', 1, 0);
+
+-- ----------------------------
+-- Table structure for sysresource
+-- ----------------------------
+DROP TABLE IF EXISTS `sysresource`;
+CREATE TABLE `sysresource`  (
+  `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '资源id',
+  `ResourceUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源链接',
+  `ResourceType` int(255) NULL DEFAULT NULL COMMENT '资源类型1：图片；2：视频',
+  `ResourceRemark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源备注',
+  `CreateBy` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `CreateTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `IsDel` int(255) NULL DEFAULT NULL COMMENT '是否已经删除0：未删除，1：已经删除',
+  `Sort` int(255) NULL DEFAULT NULL COMMENT '排序值',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sysuser

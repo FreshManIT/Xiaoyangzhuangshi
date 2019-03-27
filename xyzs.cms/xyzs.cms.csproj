@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionAttribute.cs" />
+    <Compile Include="Controllers\SysResourceController.cs" />
     <Compile Include="Controllers\SysSetController.cs" />
     <Compile Include="Controllers\VMEJsonResult.cs" />
     <Compile Include="Global.asax.cs">
@@ -359,15 +360,18 @@
     <Content Include="Content\Images\repeat.png" />
     <Content Include="Content\Images\rewind.png" />
     <Content Include="Content\Images\shuffle.png" />
+    <Content Include="Content\Images\upload.png" />
     <Content Include="Content\Images\volume.png" />
     <Content Include="Content\Scripts\Content\contentedit.js" />
     <Content Include="Content\Scripts\Content\contentlist.js" />
+    <Content Include="Content\Scripts\SysResource\sysresource.js" />
     <Content Include="Content\Scripts\SysSet\menuadmin.js" />
     <Content Include="Content\Scripts\SysSet\menuset.js" />
     <Content Include="Content\Scripts\SysSet\menuusers.js" />
     <Content Include="Content\Scripts\SysSet\sysdic.js" />
     <Content Include="Content\Styles\Home\admin.main.css" />
     <Content Include="Content\Styles\Home\supersized.css" />
+    <Content Include="Content\Styles\Resource\resoucelist.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -700,6 +704,7 @@
     <Content Include="Views\Content\ContentEdit.cshtml" />
     <Content Include="Views\Content\ContentList.cshtml" />
     <Content Include="Views\SysSet\SysDicManage.cshtml" />
+    <Content Include="Views\SysResource\ResourceList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">
