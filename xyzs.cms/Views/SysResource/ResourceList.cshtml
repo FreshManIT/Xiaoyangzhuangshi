@@ -28,6 +28,12 @@
                         </option>
                     </select>
                 </label>
+                <div class="checkbox">
+                    <label>
+                        <input class="colored-danger" name="form-field-checkbox" type="checkbox" :checked="fruitIds.length === fruits.length"  v-on:click='checkedAll()'>
+                        <span class="text">全选</span>
+                    </label>
+                </div>
                 <button type="button" onclick="LoadingActivityResultDetailDate();"
                         class="btn btn-success" title="查询" value="查询">
                     查询<i class="fa fa-search"></i>
@@ -37,105 +43,34 @@
         </form>
     </div>
     <div id="resultTable">
-        <form class="layui-form">
-            <ul class="layer-photos-demo" id="Images">
-
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照1" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照1">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照1</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照2" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照2">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照2</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照3" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照3">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照3</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照4" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照4">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照4</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照5" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照5">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照5</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照6" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照6">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照6</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照7" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照7">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照7</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照8" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照8">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照8</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                    <img src="/Uploadfile/ShareDetailImage/20190327/6368929806361652411063475.jpg" alt="美女生活照9" style="height: 176px;">
-                    <div class="operate">
-                        <div class="check">
-                            <input type="checkbox" name="belle" lay-filter="choose" lay-skin="primary" title="美女生活照9">
-                            <div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>美女生活照9</span><i class="layui-icon"></i></div>
-                        </div><i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-            </ul>
-        </form>
-        <table width="100%">
-            <tbody>
-                <tr>
-                    <td>
-                        <div id="pager">
+        <ul id="Images">
+            <li v-for="item of dataList">
+                <img :src="item.ResourceUrl" style="height: 176px;">
+                <div class="operate">
+                    <div class="check">
+                        <div class="checkbox">
+                            <label>
+                                <input class="colored-danger" name="form-field-checkbox" type="checkbox">
+                                <span class="text">{{item.ResourceRemark}}</span>
+                            </label>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!--当前页码-->
-        <input type="hidden" id="currentPageIndex" value="1">
+                    </div><i class="fa fa-trash-o img_del" v-on:click="vueDelCostContent(item.Id)"></i>
+                </div>
+            </li>
+        </ul>
     </div>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <div id="pager">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--当前页码-->
+    <input type="hidden" id="currentPageIndex" value="1">
 </div>
 
 <!-- 模态框 -->

@@ -2,7 +2,10 @@
 var resultVm = new Vue({
     el: '#resultTable',
     data: {
-        dataList: []
+        dataList: [],
+        dataIds: [],
+        // 初始化全选按钮, 默认不选
+        isCheckedAll: false
     },
     computed: {},
     methods: {
@@ -45,6 +48,9 @@ function LoadingActivityResultDetailDate() {
         success: function (data) {
             if (data && data.ResultCode == 0) {
                 resultVm.$data.dataList = data.Data.dataList;
+                for (var i = 0; i < data.Data.dataList.length; i++) {
+                    resultVm.$data.dataIds.push(data.Data.dataList[i].Id);
+                }
                 pager.itemCount = "" + data.Data.count;
                 pager.index = $("#currentPageIndex").val();
                 pager.render();
@@ -145,41 +151,6 @@ function newResource() {
     $("#detailWindow").modal("show");
 }
 
-/**
- * 编辑模态窗口
- */
-function editContent(id) {
-    if (!id || id < 1) {
-        parent.layer.msg("参数错误");
-        return;
-    }
-    initViewModel();
-    var index = layer.load();
-    $.ajax("/SysSet/GetUserModel?id=" + id, {
-        type: "POST",
-        success: function (result) {
-            if (result && result.ResultCode == 0 && result.Data) {
-                detailVm.$data.detail_model = {
-                    Id: result.Data.Id,
-                    Sex: result.Data.Sex,
-                    Birthday: result.Data.Birthday,
-                    UserName: result.Data.UserName,
-                    TrueName: result.Data.TrueName,
-                    TelPhone: result.Data.TelPhone,
-                    UserType: result.Data.UserType,
-                    CouldChangeName: true
-                };
-                $("#detailWindow").modal("show");
-            } else
-                parent.layer.msg(result.Message);
-        },
-        error: function () {
-            parent.layer.msg("编辑错误");
-        }
-    });
-    layer.close(index);
-}
-
 /*
  * 保存
  */
@@ -229,7 +200,7 @@ function delContent(id) {
         return;
     }
     var index = layer.load();
-    $.ajax("/SysSet/DelModel?id=" + id, {
+    $.ajax("/SysResource/DelResourceModel?id=" + id, {
         type: "POST",
         success: function (result) {
             if (result && result.ResultCode == 0) {

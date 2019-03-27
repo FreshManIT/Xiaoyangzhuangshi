@@ -106,6 +106,31 @@ namespace xyzs.cms.Controllers
                 return Json(resultMode, JsonRequestBehavior.AllowGet);
             }
         }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ResourceList)]
+        public ActionResult DelResourceModel(long id)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new ResourceService();
+            try
+            {
+                server.DelModel(id);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+            }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }
