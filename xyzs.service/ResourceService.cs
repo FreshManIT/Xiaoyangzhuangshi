@@ -32,10 +32,19 @@ namespace xyzs.service
         /// <summary>
         /// 删除记录
         /// </summary>
-        /// <param name="id"></param>
-        public void DelModel(long id)
+        /// <param name="ids"></param>
+        public void DelModel(List<long> ids)
         {
-            _dataAccess.DelModel(id);
+            if (ids == null || ids.Count < 1) return;
+            if (ids.Count == 1)
+            {
+                _dataAccess.DelModel(ids[0]);
+            }
+            else
+            {
+                _dataAccess.DelModels(ids);
+            }
+
         }
 
         /// <summary>

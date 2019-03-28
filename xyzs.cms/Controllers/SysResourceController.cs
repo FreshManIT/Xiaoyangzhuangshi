@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
 using xyzs.common.EnumBusiness;
@@ -110,20 +111,24 @@ namespace xyzs.cms.Controllers
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ids"></param>
         /// <returns></returns>
         [Permission(EnumBusinessPermission.ResourceList)]
-        public ActionResult DelResourceModel(long id)
+        public ActionResult DelResourceModels(List<long> ids)
         {
             var resultMode = new ResponseBaseModel<dynamic>
             {
                 ResultCode = ResponceCodeEnum.Success,
                 Message = "响应成功"
             };
+            if (ids == null || ids.Count < 1)
+            {
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
             var server = new ResourceService();
             try
             {
-                server.DelModel(id);
+                server.DelModel(ids);
             }
             catch (Exception e)
             {

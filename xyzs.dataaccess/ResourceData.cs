@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
 using FreshCommonUtility.Dapper;
 using FreshCommonUtility.SqlHelper;
 using xyzs.common.EnumBusiness;
@@ -97,6 +98,20 @@ namespace xyzs.dataaccess
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
                 conn.Update(model);
+            }
+        }
+
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="ids"></param>
+        public void DelModels(List<long> ids)
+        {
+            if (ids == null || ids.Count < 1) return;
+            var sql = @"update sysresource set IsDel=@IsDel where Id in @Ids";
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                conn.Execute(sql, new { IsDel = FlagEnum.HadOne.GetHashCode(), Ids = ids });
             }
         }
     }
