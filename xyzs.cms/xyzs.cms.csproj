@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionAttribute.cs" />
+    <Compile Include="Controllers\SysAdvertiseController.cs" />
     <Compile Include="Controllers\SysResourceController.cs" />
     <Compile Include="Controllers\SysSetController.cs" />
     <Compile Include="Controllers\VMEJsonResult.cs" />
@@ -368,6 +369,7 @@
     <Content Include="Content\Scripts\SysSet\menuadmin.js" />
     <Content Include="Content\Scripts\SysSet\menuset.js" />
     <Content Include="Content\Scripts\SysSet\menuusers.js" />
+    <Content Include="Content\Scripts\SysAdvertise\sysadvertise.js" />
     <Content Include="Content\Scripts\SysSet\sysdic.js" />
     <Content Include="Content\Styles\Home\admin.main.css" />
     <Content Include="Content\Styles\Home\supersized.css" />
@@ -705,6 +707,7 @@
     <Content Include="Views\Content\ContentList.cshtml" />
     <Content Include="Views\SysSet\SysDicManage.cshtml" />
     <Content Include="Views\SysResource\ResourceList.cshtml" />
+    <Content Include="Views\SysAdvertise\SysAdvertiseList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">

@@ -73,5 +73,20 @@ namespace xyzs.common.EnumBusiness
         ResourceList=3002,
 
         #endregion
+
+        #region [4、广告配置]
+
+        /// <summary>
+        /// 广告配置
+        /// </summary>
+        [Description("广告配置")]
+        AdvertiseManage=4001,
+
+        /// <summary>
+        /// 广告列表
+        /// </summary>
+        [Description("广告列表")]
+        AdvertiseList=4002,
+        #endregion
     }
 }

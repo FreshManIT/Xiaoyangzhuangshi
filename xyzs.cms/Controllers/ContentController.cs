@@ -110,6 +110,7 @@ namespace xyzs.cms.Controllers
         /// 获取内容的配置信息
         /// </summary>
         /// <returns></returns>
+        [Permission(EnumBusinessPermission.ContentEditPage)]
         public ActionResult GetContentType()
         {
             var resultMode = new ResponseBaseModel<dynamic>
