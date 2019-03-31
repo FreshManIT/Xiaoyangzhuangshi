@@ -119,7 +119,6 @@ namespace xyzs.cms.Controllers
             saveModel.Sort = model.Sort;
             saveModel.AdvertiType = model.AdvertiType;
             saveModel.Remarks = model.Remarks;
-            saveModel.ResourceId = model.ResourceId;
             saveModel.AdvertiUrl = model.AdvertiUrl;
             try
             {
@@ -162,6 +161,25 @@ namespace xyzs.cms.Controllers
             {
                 Trace.WriteLine(e);
             }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 获取信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ResourceList)]
+        public ActionResult GetModel(long id)
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功"
+            };
+            var server = new SysAdvertiseService();
+            var data = server.Get(id);
+            resultMode.Data = data;
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
         #endregion

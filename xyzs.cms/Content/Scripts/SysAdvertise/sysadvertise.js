@@ -4,7 +4,8 @@
 var resultVm = new Vue({
     el: '#resultTable',
     data: {
-        dataList: []
+        dataList: [],
+        contentTypeNum: []
     },
     computed: {},
     methods: {
@@ -13,6 +14,15 @@ var resultVm = new Vue({
         },
         vueDelContent: function (id) {
             delContent(id);
+        },
+        vueTypeContent: function (typeId) {
+            var data = this.contentTypeNum.filter(function (item) {
+                return item.Id == typeId;
+            });
+            if (data && data.length > 0) {
+                return data[0].Lable;
+            }
+            return "未知";
         }
     }
 });
@@ -31,10 +41,9 @@ var searchVm = new Vue({
     el: '#form1',
     data: {
         model: {
-            label: "",
             type: "",
-            pageIndex: 1,
-            pageSize: 10
+            pageIndex: pager.index,
+            pageSize: pager.size
         },
         contentTypeNum: []
     }
@@ -48,7 +57,7 @@ function LoadingActivityResultDetailDate() {
     $(".loading-container").removeClass("loading-inactive");
     searchVm.$data.model.pageIndex = $("#currentPageIndex").val();
     $.ajax({
-        url: "/SysSet/GetDicList",
+        url: "/SysAdvertise/ResourceListPage",
         type: "POST",
         data: searchVm.$data.model,
         success: function (data) {
@@ -76,8 +85,9 @@ function GetAllType() {
         type: "POST",
         success: function (data) {
             if (data && data.ResultCode == 0) {
-                searchVm.$data.contentTypeNum = data.Data.typeList;
-                detailVm.$data.all_parent_list = data.Data.parentList;
+                searchVm.$data.contentTypeNum = data.Data;
+                resultVm.$data.contentTypeNum = data.Data;
+                detailVm.$data.all_parent_list = data.Data;
             }
         }
     });
@@ -107,8 +117,9 @@ function delContent(id) {
         , yes: function (indexOne) {
             layer.close(indexOne);
             var index = layer.load();
-            $.ajax("/SysSet/DelDicModel?id=" + id, {
+            $.ajax("/SysAdvertise/DelResourceModels", {
                 type: "POST",
+                data: { ids: [id] },
                 success: function (result) {
                     if (result && result.ResultCode == 0) {
                         parent.layer.msg("删除成功");
@@ -128,7 +139,7 @@ function delContent(id) {
 }
 
 /**
- * 编辑跳转
+ * 编辑
  * @param {any} id
  */
 function editContent(id) {
@@ -139,7 +150,7 @@ function editContent(id) {
     initViewModel();
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax("/SysSet/GetDicModel?id=" + id, {
+    $.ajax("/SysAdvertise/GetModel?id=" + id, {
         type: "POST",
         success: function (result) {
             if (result && result.ResultCode == 0 && result.Data) {
@@ -159,30 +170,68 @@ function editContent(id) {
 }
 
 /**
-初始化页面
-*/
-$(document).ready(function () {
-    LoadingActivityResultDetailDate();
-    GetAllType();
-});
-
-/**
  * 编辑
  */
 var detailVm = new Vue({
     el: '#detailWindow',
     data: {
         model: {
-            Id: "",
-            Value: "",
-            Lable: "",
-            Type: "",
-            Description: "",
-            Sort: "",
+            Id: 0,
+            AdvertiName: "",
+            AdvertiType: "",
+            AdvertiTip: "",
             Remarks: "",
-            ParentId: 0
+            Sort: "",
+            ResourceId: 0,
+            ResourceUrl: "",
+            AdvertiUrl: ""
         },
         all_parent_list: []
+    },
+    methods: {
+        initImageUrl(url) {
+            if (url) return url;
+            return '/Content/Images/upload.png';
+        },
+        fileClick() {
+            document.getElementById('resource_upload_file').click();
+        },
+        fileChange(el) {
+            if (!el.target.files[0].size) return;
+            this.fileList(el.target.files);
+            el.target.value = '';
+        },
+        fileList(files) {
+            for (let i = 0; i < files.length; i++) {
+                this.fileAdd(files[i]);
+            }
+        },
+        fileAdd(file) {
+            var reader = new FileReader();
+            reader.vue = this;
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                file.src = this.result;
+            }
+            //上传到服务器
+            var formData = new FormData();
+            formData.append("file", file);
+            $.ajax({
+                url: '/SysSet/PutImageToSys',
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data && data.ResultCode == 0) {
+                        detailVm.$data.model.ResourceUrl = data.Message;
+                        layer.msg('上传成功', { icon: 1 });
+                    } else {
+                        layer.msg(data.Message, { icon: 5 });
+                    }
+                }
+            });
+        }
     }
 });
 
@@ -191,14 +240,15 @@ var detailVm = new Vue({
  */
 function initViewModel() {
     detailVm.$data.model = {
-        Id: "",
-        Value: "",
-        Lable: "",
-        Type: "",
-        Description: "",
-        Sort: "",
+        Id: 0,
+        AdvertiName: "",
+        AdvertiType: "",
+        AdvertiTip: "",
         Remarks: "",
-        ParentId: 0
+        Sort: "",
+        ResourceId: 0,
+        ResourceUrl: "",
+        AdvertiUrl: ""
     };
 }
 
@@ -216,7 +266,7 @@ function newContent() {
 function saveDataInfo() {
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax("/SysSet/SaveDicInfo", {
+    $.ajax("/SysAdvertise/SaveResourceInfo", {
         type: "POST",
         data: detailVm.$data.model,
         success: function (result) {
@@ -236,3 +286,11 @@ function saveDataInfo() {
         }
     });
 }
+
+/**
+初始化页面
+*/
+$(document).ready(function () {
+    LoadingActivityResultDetailDate();
+    GetAllType();
+});

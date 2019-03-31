@@ -57,10 +57,6 @@ namespace xyzs.model.DatabaseModel
         /// </summary>
         public Decimal Sort { get; set; }
         /// <summary>
-        /// ResourceId 关联资源id
-        /// </summary>
-        public Int64 ResourceId { get; set; }
-        /// <summary>
         /// ResourceUrl 关联资源url
         /// </summary>
         public String ResourceUrl { get; set; }

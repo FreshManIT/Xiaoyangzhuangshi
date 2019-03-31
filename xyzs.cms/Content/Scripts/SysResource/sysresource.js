@@ -125,6 +125,10 @@ var detailVm = new Vue({
         all_resource_type: all_resource_type
     },
     methods: {
+        initImageUrl(url) {
+            if (url) return url;
+            return '/Content/Images/upload.png';
+        },
         fileClick() {
             document.getElementById('resource_upload_file').click();
         },
@@ -173,7 +177,7 @@ var detailVm = new Vue({
 function initViewModel() {
     detailVm.$data.detail_model = {
         Id: 0,
-        ResourceUrl: "/Content/Images/upload.png",
+        ResourceUrl: "",
         ResourceType: 1,
         ResourceRemark: "",
         Sort: 0

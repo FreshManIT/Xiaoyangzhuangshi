@@ -107,7 +107,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">图片：</label>
                             <div class="col-sm-8">
-                                <img v-on:click="fileClick" :src="detail_model.ResourceUrl" width="100px" height="100px" />
+                                <img v-on:click="fileClick" :src="initImageUrl(detail_model.ResourceUrl)" width="100px" height="100px" />
                                 <input v-on:change="fileChange($event)" accept=".png,.jpg,.gif,.jpeg" type="file" id="resource_upload_file" style="display: none">
                                 <input name="ResourceUrl" class="form-control input-sm" type="hidden" v-model="detail_model.ResourceUrl">
                             </div>
