@@ -88,5 +88,20 @@ namespace xyzs.common.EnumBusiness
         [Description("广告列表")]
         AdvertiseList=4002,
         #endregion
+
+        #region [5、留言管理]
+
+        /// <summary>
+        /// 留言管理
+        /// </summary>
+        [Description("留言管理")]
+        CustomerCommentManage=5001,
+
+        /// <summary>
+        /// 留言列表
+        /// </summary>
+        [Description("留言列表")]
+        CustomerCommentList=5002,
+        #endregion
     }
 }

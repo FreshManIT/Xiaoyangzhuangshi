@@ -155,6 +155,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\CustomerCommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PermissionAttribute.cs" />
     <Compile Include="Controllers\SysAdvertiseController.cs" />
@@ -365,6 +366,7 @@
     <Content Include="Content\Images\volume.png" />
     <Content Include="Content\Scripts\Content\contentedit.js" />
     <Content Include="Content\Scripts\Content\contentlist.js" />
+    <Content Include="Content\Scripts\CustomerComment\customercomment.js" />
     <Content Include="Content\Scripts\SysResource\sysresource.js" />
     <Content Include="Content\Scripts\SysSet\menuadmin.js" />
     <Content Include="Content\Scripts\SysSet\menuset.js" />
@@ -708,6 +710,7 @@
     <Content Include="Views\SysSet\SysDicManage.cshtml" />
     <Content Include="Views\SysResource\ResourceList.cshtml" />
     <Content Include="Views\SysAdvertise\SysAdvertiseList.cshtml" />
+    <Content Include="Views\CustomerComment\CustomerCommentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">

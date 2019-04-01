@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="AccountData.cs" />
     <Compile Include="BaseData.cs" />
+    <Compile Include="CustomerCommentData.cs" />
     <Compile Include="DbLinkTestData.cs" />
     <Compile Include="MenuData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
