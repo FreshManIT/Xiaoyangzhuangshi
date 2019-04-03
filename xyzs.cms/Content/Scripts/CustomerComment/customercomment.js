@@ -13,6 +13,11 @@ var resultVm = new Vue({
         vueDelContent: function (id) {
             delContent(id);
         },
+        dealCommont: function (id) {
+            layer.prompt({ title: '处理结果', formType: 2 }, function (text, index) {
+                dealComment(id, text, index);
+            });
+        },
         vueTypeContent: function (hasDeal) {
             var data = this.contentTypeNum.filter(function (item) {
                 return item.id == hasDeal;
@@ -100,7 +105,7 @@ function delContent(id) {
         , yes: function (indexOne) {
             layer.close(indexOne);
             var index = layer.load();
-            $.ajax("/SysAdvertise/DelResourceModels", {
+            $.ajax("/CustomerComment/DelResourceModels", {
                 type: "POST",
                 data: { ids: [id] },
                 success: function (result) {
@@ -117,6 +122,36 @@ function delContent(id) {
                     layer.close(index);
                 }
             });
+        }
+    });
+}
+
+/**
+ * 处理留言
+ * @param {any} id
+ * @param {any} dealResult
+ * @param {any} handler
+ */
+function dealComment(id, dealResult, handler) {
+    if (!id || id < 1) {
+        parent.layer.msg("参数错误", { icon: 5 });
+        return;
+    }
+    $.ajax("/CustomerComment/DealResultModels", {
+        type: "POST",
+        data: { id: id, dealResult: dealResult },
+        success: function (result) {
+            if (result && result.ResultCode == 0) {
+                parent.layer.msg("处理成功");
+                Search(1);
+            } else {
+                parent.layer.msg(result.Message, { icon: 1 });
+            }
+            layer.close(handler);
+        },
+        error: function () {
+            parent.layer.msg("处理错误", { icon: 5 });
+            layer.close(handler);
         }
     });
 }
