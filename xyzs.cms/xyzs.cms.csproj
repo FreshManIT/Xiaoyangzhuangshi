@@ -176,6 +176,7 @@
     <Compile Include="UEditor\net\App_Code\UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\sensitive.txt" />
     <Content Include="Assets\css\4095-rtl.min.css" />
     <Content Include="Assets\css\animate.min.css" />
     <Content Include="Assets\css\beyond-rtl.min.css" />
