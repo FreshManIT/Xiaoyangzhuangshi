@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using FreshCommonUtility.Web;
 using xyzs.common.EnumBusiness;
 using xyzs.model;
 using xyzs.model.DatabaseModel;
@@ -71,7 +72,11 @@ namespace xyzs.cms.Controllers
             {
                 return Json(resultMode, JsonRequestBehavior.AllowGet);
             }
-
+            if (string.IsNullOrEmpty(model.Introduction))
+            {
+                var introduction = FilterHtmlHelper.NoHtml(model.Content);
+                model.Introduction = introduction != null && introduction.Length > 200 ? introduction.Substring(0, 200) : introduction;
+            }
             var server = new ContentService();
             var id = 0L;
             if (model.Id > 0)
@@ -86,6 +91,7 @@ namespace xyzs.cms.Controllers
                 oldModel.Content = model.Content;
                 oldModel.ContentSource = model.ContentSource;
                 oldModel.ContentType = model.ContentType;
+                oldModel.Introduction = model.Introduction;
                 oldModel.Title = model.Title;
                 id = server.AddAndUpdateContentInfo(oldModel);
             }
@@ -153,7 +159,7 @@ namespace xyzs.cms.Controllers
         /// <param name="contentSource"></param>
         /// <returns></returns>
         [Permission(EnumBusinessPermission.ContentEditList)]
-        public ActionResult GetList(int pageIndex, int pageSize = 0, string title = null, string starttime = null, string endtime = null, int contentType = 0, string contentSource = null)
+        public ActionResult GetList(int pageIndex, int pageSize = 0, string title = null, string starttime = null, string endtime = null, string contentType = null, string contentSource = null)
         {
             if (pageIndex < 1)
             {

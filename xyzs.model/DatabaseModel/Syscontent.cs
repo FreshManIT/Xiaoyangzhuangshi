@@ -53,5 +53,10 @@ namespace xyzs.model.DatabaseModel
         /// ContentType 内容类型，关联文章类型
         /// </summary>
         public string ContentType { get; set; }
+
+        /// <summary>
+        /// 摘要
+        /// </summary>
+        public string Introduction { get; set; }
     }
 }

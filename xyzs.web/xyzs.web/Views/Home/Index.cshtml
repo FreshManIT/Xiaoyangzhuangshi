@@ -1,17 +1,9 @@
-﻿
+﻿@using xyzs.model.DatabaseModel
+
 @{
-    ViewBag.Title = "小杨装饰";
+    ViewBag.Title = "重庆晓杨建筑装饰工程有限公司";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
-    <ul class="am-slides">
-        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
-        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
-        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
-        <li><img src="@(ViewBag.RootNode)/Content/images/banner.jpg" alt=""></li>
-    </ul>
-</div>
 
 <section class="index-section">
     <div>
@@ -25,8 +17,8 @@
                 <div class="index-auto">
                     <article>公司介绍</article>
                     <h6>COMPANY INTRODUCTION</h6>
-                    <main>FURNITUREDESGIN是一家拥有丰富的经验的家具设计公司。所设计的家具销往全国各地。设计的实践，在于为生活提供更舒适的环境及精确负责的施工，我们具有非常专业的团队，为客户创造符合装修风格的贴心家具。满足客户的要求与喜好，甚至将梦想中的生活氛围透过专业的感知力呈现，将家具透过色彩以及最和谐的比例设计而成。公司凭借高素质的人才队伍，先进的工艺和完善的企业管理，赢得了国内外客户的良好赞誉。</main>
-                    <a class="index-button" href="#">查看详情</a>
+                    <main>重庆晓杨建筑装饰工程有限公司是一家集量房、设计、施工为一体的专业化装饰公司。其前身为重庆市巴南区小杨装饰设计部，成立于2015年5月5日。在近几年的不断发展与壮大中，于208年12月28日正式更名为重庆市晓杨建筑装饰工程有限公司。自成立以来，晓杨装饰一直秉承着以诚为本，将心比心的原则，安全第一，质量至上的宗旨服务每一位客户。我们站在客户的角度，把每套房屋都当成自己的家来思考和设计，不会带来一种华而不实，实而不美的感觉……</main>
+                    <a class="index-button" href="@Url.Action("About","Home")">查看详情</a>
                 </div>
             </div>
         </section>

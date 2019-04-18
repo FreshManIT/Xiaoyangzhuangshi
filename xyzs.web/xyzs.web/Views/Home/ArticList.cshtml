@@ -1,0 +1,94 @@
+﻿@model System.Collections.Generic.List<xyzs.model.DatabaseModel.Syscontent>
+
+@{
+    ViewBag.Title = "重庆晓杨建筑装饰工程有限公司-新闻资讯";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int page = ViewBag.Page;
+    int pageCount = ViewBag.PageCount;
+}
+<div>
+    <header class="article_list_more_header">
+        <div> <a>首页</a>&#62;<a>新闻资讯</a>&#62;<a>更多</a></div>
+    </header>
+
+    <section class="article-content">
+        <ul>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var syscontent in Model)
+                {
+                    <li>
+                        <div class="article-date">
+                            <strong>@(syscontent.CreateTime.ToString("dd"))</strong>
+                            <p>@(syscontent.CreateTime.ToString("yyyy/MM"))</p>
+                        </div>
+                        <div class="article-info">
+                            <a href="@Url.Action("ArticleDetail","Home",new {id=syscontent.Id})">
+                                <h3>@(syscontent.Title)</h3>
+                                <p>@syscontent.Introduction</p>
+                            </a>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+
+    </section>
+    <div class="article_list_more_pages">
+        <ul>
+            @if (pageCount > 0)
+            {
+                if (page > 1)
+                {
+                    <li><a href="@(ViewBag.Url+"?page=1")">首页</a></li>
+                    <li><a href="@(ViewBag.Url+"?page="+(page-1))">上一页</a></li>
+                }
+                if (pageCount > 6)
+                {
+                    var beginIndex = page - 3;
+                    var endIndex = page + 2;
+                    if (beginIndex < 1)
+                    {
+                        beginIndex = 1;
+                        endIndex = beginIndex + 6;
+                    }
+                    if (endIndex > pageCount)
+                    {
+                        endIndex = pageCount;
+                        beginIndex = endIndex - 6;
+                    }
+                    for (int i = beginIndex; i <= endIndex; i++)
+                    {
+                        if (page == i)
+                        {
+                            <b>@(i)</b>
+                        }
+                        else
+                        {
+                            <li><a href="@(ViewBag.Url+"?page="+i)">@(i)</a></li>
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i <= pageCount; i++)
+                    {
+                        if (page == i)
+                        {
+                            <b>@(i)</b>
+                        }
+                        else
+                        {
+                            <li><a href="@(ViewBag.Url+"?page="+i)">@(i)</a></li>
+                        }
+                    }
+                }
+                if (page != pageCount)
+                {
+                    <li><a href="@(ViewBag.Url+"?page="+(page+1))">下一页</a></li>
+                    <li><a href="@(ViewBag.Url+"?page="+pageCount)">尾页</a></li>
+                }
+            }
+        </ul>
+    </div>
+</div>

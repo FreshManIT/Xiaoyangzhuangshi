@@ -3,17 +3,6 @@
 'use strict';
 require('./global');
 $(function(){
-    var pathname=window.location.pathname;
-    if(pathname.length>=3){
-        $('.header-nav-ul li').removeClass('on');
-        $('.header-nav-ul a').each(function(){
-
-
-            if($(this).attr('href').indexOf(pathname)===2){
-                $(this).parent().addClass('on');
-            }
-        });
-    }
        $('.header-nav-ul li').hover(function(){
                var names=$(this).children('a').attr('name');
                $('.'+names).show();

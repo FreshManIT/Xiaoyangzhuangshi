@@ -1,0 +1,50 @@
+﻿@using xyzs.model.DatabaseModel
+@model xyzs.model.DatabaseModel.Syscontent
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = string.IsNullOrEmpty(Model.Title) ? "新闻资讯详情" : Model.Title;
+    var preContent = ViewBag.Pre != null ? (Syscontent)ViewBag.Pre : null;
+    var nextContent = ViewBag.Next != null ? (Syscontent)ViewBag.Next : null;
+}
+
+<div>
+    <header class="header-article-list">
+        <div class="article-position">
+            @if (preContent != null)
+            {
+                <a href="@Url.Action("ArticleDetail","Home",new {id=preContent.Id})">
+                    <span>上一篇</span>
+                    <span>@preContent.Title</span>
+                </a>
+            }
+            else
+            {
+                <a href="">
+                    <span>上一篇</span>
+                    <span>没有了</span>
+                </a>
+            }
+        </div>
+        <div class="article-more-btn">
+            @if (nextContent != null)
+            {
+                <a href="@Url.Action("ArticleDetail","Home",new {id=nextContent.Id})">
+                    <span>下一篇</span>
+                    <span>@nextContent.Title</span>
+                </a>
+            }
+        </div>
+    </header>
+
+    <section class="article-content">
+        @if (Model != null)
+        {
+            <h4>@Model.Title</h4>
+            <main>
+                @Html.Raw(Model.Content)
+            </main>
+        }
+
+    </section>
+</div>

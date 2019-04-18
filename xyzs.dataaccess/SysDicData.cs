@@ -82,6 +82,20 @@ namespace xyzs.dataaccess
         }
 
         /// <summary>
+        /// 根据value查询字典数据
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public List<SysdictModel> GetDicByValue(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return null;
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                return conn.GetList<SysdictModel>(new { IsDel = FlagEnum.HadZore.GetHashCode(), Value = value })?.ToList();
+            }
+        }
+
+        /// <summary>
         /// 删除字典表记录
         /// </summary>
         /// <param name="id"></param>

@@ -74,5 +74,15 @@ namespace xyzs.service
         {
             _dataAccess.SaveModel(saveModel);
         }
+
+        /// <summary>
+        /// 根据value查询字典数据
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public List<SysdictModel> GetDicByValue(string value)
+        {
+            return _dataAccess.GetDicByValue(value);
+        }
     }
 }

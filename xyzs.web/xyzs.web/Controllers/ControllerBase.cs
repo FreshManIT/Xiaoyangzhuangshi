@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FreshCommonUtility.Configure;
 using xyzs.common.Unit;
+using xyzs.service;
 
 namespace xyzs.web.Controllers
 {
@@ -13,13 +15,7 @@ namespace xyzs.web.Controllers
         /// <summary>
         /// 分页大小
         /// </summary>
-        public virtual int PageSize
-        {
-            get
-            {
-                return 15;
-            }
-        }
+        public virtual int PageSize => 15;
 
         protected ContentResult JsonP(string callback, object data)
         {
@@ -121,6 +117,13 @@ namespace xyzs.web.Controllers
         private void InitializeStaticResource()
         {
             ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode") ?? string.Empty;
+            var dicSlider = new SysDicService().GetDicByValue("IndexSlider")?.FirstOrDefault();
+            var sliderServer = new SysAdvertiseService();
+            ViewBag.SliderList = null;
+            if (dicSlider != null)
+            {
+                ViewBag.SliderList = sliderServer.GetList(dicSlider.Id, 1, 10, out _);
+            }
         }
 
         /// <summary>

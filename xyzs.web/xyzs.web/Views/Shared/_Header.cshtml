@@ -1,9 +1,15 @@
-﻿<header style="margin-top: 25px;">
+﻿@using xyzs.model.DatabaseModel
+@{
+    /**/
+
+    var sliderList = ViewBag.SliderList != null ? (List<SysadvertisementModel>)ViewBag.SliderList : null;
+}
+<header style="margin-top: 25px;">
     <div class="header-top">
         <div class="width-center">
             <div class="header-logo "><img src="@(ViewBag.RootNode)/Content/images/logo.png" alt=""></div>
             <div class="header-title div-inline">
-                <strong>重庆小杨装饰公司</strong>
+                <strong>重庆晓杨建筑装饰工程有限公司</strong>
                 <span>www.xiaoyangzhuangshi.cn</span>
             </div>
 
@@ -19,14 +25,13 @@
         </button>
         <nav>
             <ul class="header-nav-ul am-collapse am-in">
-                <li class="on"><a href="@Url.Action("Index","Home")" name="index">首页</a></li>
-                <li><a href="@Url.Action("About","Home")" name="about">关于我们</a></li>
-                <li><a href="@Url.Action("ProductList","Home")" name="show">案例展示</a></li>
-                <li><a href="article_list.html" name="new">新闻资讯</a></li>
-                <li>
+                <li class='@(ViewBag.Action=="Index"?"on":"")'><a href="@Url.Action("Index","Home")" name="Index">首页</a></li>
+                <li class='@(ViewBag.Action=="About"?"on":"")'><a href="@Url.Action("About","Home")" name="About">关于我们</a></li>
+                <li class='@(ViewBag.Action=="ProductList"?"on":"")'><a href="@Url.Action("ProductList","Home")" name="ProductList">案例展示</a></li>
+                <li class='@(ViewBag.Action=="ArticList"?"on":"")'><a href="@Url.Action("ArticList","Home")" name="ArticList">新闻资讯</a></li>
+                <li class='@(ViewBag.Action=="Contact"?"on":"")'>
                     <a href="@Url.Action("Contact","Home")" name="message">联系我们</a>
                     <div class="secondary-menu">
-
                         <ul><li><a href="@Url.Action("Message","Home")" class="message"></a></li></ul>
                     </div>
                 </li>
@@ -34,3 +39,14 @@
         </nav>
     </div>
 </header>
+@if (sliderList != null && sliderList.Count > 0)
+{
+    <div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 8000}">
+        <ul class="am-slides">
+            @foreach (var sysadvertisementModel in sliderList)
+            {
+                <li><img src="@(ViewBag.RootNode+sysadvertisementModel.ResourceUrl)" alt="@sysadvertisementModel.AdvertiTip"></li>
+            }
+        </ul>
+    </div>
+}

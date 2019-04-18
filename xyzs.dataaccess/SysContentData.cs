@@ -56,7 +56,7 @@ namespace xyzs.dataaccess
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<Syscontent> GetModels(string title, string starttime, string endtime, int contentType, string contentSource, int pageIndex, int pageSize)
+        public List<Syscontent> GetModels(string title, string starttime, string endtime, string contentType, string contentSource, int pageIndex, int pageSize)
         {
             var where = new StringBuilder(" where IsDel=@IsDel ");
             if (!string.IsNullOrEmpty(title))
@@ -74,7 +74,7 @@ namespace xyzs.dataaccess
                 where.Append(" and CreateTime< @EndTime ");
             }
 
-            if (contentType > 0)
+            if (!string.IsNullOrEmpty(contentType))
             {
                 where.Append(" and ContentType=@ContentType ");
             }
@@ -102,7 +102,7 @@ namespace xyzs.dataaccess
         /// 获取总记录数
         /// </summary>
         /// <returns></returns>
-        public int GetCount(string title, string starttime, string endtime, int contentType, string contentSource)
+        public int GetCount(string title, string starttime, string endtime, string contentType, string contentSource)
         {
             var where = new StringBuilder(" where IsDel=@IsDel ");
             if (!string.IsNullOrEmpty(title))
@@ -120,7 +120,7 @@ namespace xyzs.dataaccess
                 where.Append(" and CreateTime< @EndTime ");
             }
 
-            if (contentType > 0)
+            if (!string.IsNullOrEmpty(contentType))
             {
                 where.Append(" and ContentType=@ContentType ");
             }
@@ -161,6 +161,26 @@ namespace xyzs.dataaccess
                 }
             }
 
+        }
+
+        /// <summary>
+        /// 获取前后文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Syscontent> GetPreNextContent(long id)
+        {
+            if (id < 1) return null;
+            var result = new List<Syscontent>();
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                var pre = conn.GetListPaged<Syscontent>(1, 1, " where Id<@Id ", " Id desc ", new { Id = id })?.ToList().FirstOrDefault();
+                var next = conn.GetListPaged<Syscontent>(1, 1, " where Id>@Id ", " Id asc ", new { Id = id })?.ToList().FirstOrDefault();
+                if (pre != null) result.Add(pre);
+                if (next != null) result.Add(next);
+            }
+
+            return result;
         }
     }
 }
