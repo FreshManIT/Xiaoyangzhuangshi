@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using xyzs.model.DatabaseModel;
 using xyzs.service;
@@ -114,7 +113,7 @@ namespace xyzs.web.Controllers
         /// <returns></returns>
         public ActionResult ArticleDetail(int id)
         {
-            ViewBag.Action = "ArticleDetail";
+            ViewBag.Action = "ArticList";
             var server = new ContentService();
             var model = server.GetContentModel(id);
             var preNextList = server.GetPreNextContent(id);
