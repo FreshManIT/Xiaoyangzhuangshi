@@ -159,6 +159,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\sensitive.txt" />
     <Content Include="Content\css\default.css" />
     <Content Include="Content\css\default.min.css" />
     <Content Include="Content\images\address.png" />
@@ -198,6 +199,15 @@
     <Content Include="Content\images\tables.png" />
     <Content Include="Content\images\tel.png" />
     <Content Include="Content\js\easyzoom.js" />
+    <Content Include="Content\js\layer\layer.js" />
+    <Content Include="Content\js\layer\mobile\layer.js" />
+    <Content Include="Content\js\layer\mobile\need\layer.css" />
+    <Content Include="Content\js\layer\theme\default\icon-ext.png" />
+    <Content Include="Content\js\layer\theme\default\icon.png" />
+    <Content Include="Content\js\layer\theme\default\layer.css" />
+    <Content Include="Content\js\layer\theme\default\loading-0.gif" />
+    <Content Include="Content\js\layer\theme\default\loading-1.gif" />
+    <Content Include="Content\js\layer\theme\default\loading-2.gif" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\main.min.js" />
     <Content Include="Content\lib\amazeui\amazeui.ie8polyfill.js" />

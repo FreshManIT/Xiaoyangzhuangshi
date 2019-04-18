@@ -1,5 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Web.Mvc;
+using FreshCommonUtility.Configure;
+using FreshCommonUtility.DataConvert;
+using FreshCommonUtility.Web;
+using xyzs.common.CheckCodeHelper;
+using xyzs.common.EnumBusiness;
+using xyzs.common.Unit;
+using xyzs.model;
 using xyzs.model.DatabaseModel;
 using xyzs.service;
 
@@ -55,6 +66,100 @@ namespace xyzs.web.Controllers
         {
             ViewBag.Action = "Contact";
             return View();
+        }
+
+        /// <summary>
+        /// 获取验证码
+        /// </summary>
+        public ActionResult CheckCode()
+        {
+            var yzm = new YzmHelper();
+            yzm.CreateImage();
+            var code = yzm.Text;
+            Session["ValidateCode"] = code;
+            Bitmap img = yzm.Image;
+            MemoryStream ms = new MemoryStream();
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return File(ms.ToArray(), @"image/jpeg");
+        }
+
+        /// <summary>
+        /// 添加留言信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddCommentInfo()
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Fail,
+                Message = "响应成功"
+            };
+            var checkcode = System.Web.HttpContext.Current.GetStringFromParameters("checkcode");
+            if (string.IsNullOrEmpty(checkcode) || string.IsNullOrEmpty(Session["ValidateCode"]?.ToString()))
+            {
+                resultMode.Message = "验证码必填";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+
+            var oldCode = Session["ValidateCode"];
+            Session["ValidateCode"] = null;
+            if (!oldCode.Equals(checkcode))
+            {
+                resultMode.Message = "验证码必填";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            var content = System.Web.HttpContext.Current.GetStringFromParameters("content");
+            var createTime = DateTime.Now;
+            var customerEmail = System.Web.HttpContext.Current.GetStringFromParameters("email");
+            var customerName = System.Web.HttpContext.Current.GetStringFromParameters("username");
+            var customerPhone = System.Web.HttpContext.Current.GetStringFromParameters("tel");
+
+            var fw = new FilterWord();
+            string str = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            var filePath = AppConfigurationHelper.GetString("SensitiveFilePath");
+            fw.DictionaryPath = str + filePath;
+            fw.SourctText = content;
+            content = fw.Filter('*');
+            if (string.IsNullOrEmpty(content))
+            {
+                resultMode.Message = "留言内容不能为空";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            fw.SourctText = customerEmail;
+            customerEmail = fw.Filter('*');
+            if (string.IsNullOrEmpty(customerEmail) || !RegExp.IsEmail(customerEmail))
+            {
+                resultMode.Message = "邮箱内容错误";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            fw.SourctText = customerName;
+            customerName = fw.Filter('*');
+            if (string.IsNullOrEmpty(customerName))
+            {
+                resultMode.Message = "姓名内容错误";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            fw.SourctText = customerPhone;
+            customerPhone = fw.Filter('*');
+            if (string.IsNullOrEmpty(customerPhone) || !RegExp.IsMobileNo(customerPhone))
+            {
+                resultMode.Message = "电话内容错误";
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
+            var commentModel = new CustomercommentModel { Content = content, CreateTime = createTime, CustomerName = customerName, CustomerEmail = customerEmail, CustomerPhone = customerPhone, IsDel = FlagEnum.HadZore.GetHashCode(), HasDeal = FlagEnum.HadZore };
+            var server = new CustomerCommentService();
+            try
+            {
+                server.SaveModel(commentModel);
+                resultMode.Message = "处理成功";
+                resultMode.ResultCode = ResponceCodeEnum.Success;
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                resultMode.Message = "系统异常";
+            }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

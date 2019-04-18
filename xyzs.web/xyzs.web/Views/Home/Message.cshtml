@@ -11,36 +11,76 @@
     </header>
     <div>
         <form class="message-form" method="post">
-
             <label>
-                姓名
-                <input type="text" name="username">
+                姓&nbsp;&nbsp;&nbsp;&nbsp;名
+                <input type="text" name="username" id="username">
                 <span>*</span>
             </label>
-
-
             <label>
-                电话
-                <input type="text" name="tel">
+                电&nbsp;&nbsp;&nbsp;&nbsp;话
+                <input type="text" name="tel" id="tel">
                 <span>*</span>
             </label>
-
-
             <label>
-                邮箱
-                <input type="email" name="email">
+                邮&nbsp;&nbsp;&nbsp;&nbsp;箱
+                <input type="email" name="email" id="email">
                 <span>*</span>
             </label>
-
-
             <label>
-                内容
-                <textarea></textarea>
+                内&nbsp;&nbsp;&nbsp;&nbsp;容
+                <textarea name="content" id="content"></textarea>
                 <span>*</span>
             </label>
-
-
-            <button type="button" class="am-btn am-btn-danger">提交</button>
+            <label>
+                验证码
+                <input type="text" name="checkcode" style="width: 342px;" id="checkcode">
+                <img id="valiCode" style="cursor: pointer; vertical-align: middle; height: 33px; width: 107px;" src="@Url.Action("CheckCode","Home")" alt="验证码" />
+                <span>*</span>
+            </label>
+            <button type="button" id="addCommentBtn" class="am-btn am-btn-danger">提交</button>
         </form>
     </div>
 </div>
+@section Script
+{
+    <script src="@(ViewBag.RootNote)/Content/js/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#valiCode").bind("click",
+                function() {
+                    this.src = "@Url.Action("CheckCode", "Home")" + "?time=" + (new Date()).getTime();
+                });
+            $("#addCommentBtn").bind("click", addMessageInfo);
+        });
+
+        /**
+         * 添加留言
+         */
+        function addMessageInfo() {
+            debugger
+            var index = layer.load();
+            var data = {};
+            data.username = $("#username").val();
+            data.tel = $("#tel").val();
+            data.email = $("#email").val();
+            data.content = $("#content").val();
+            data.checkcode = $("#checkcode").val();
+            $.ajax({
+                url: "@(ViewBag.RootNote)/Home/AddCommentInfo",
+                type: "POST",
+                data: data,
+                success: function(data) {
+                    if (data && data.ResultCode == 0) {
+                        layer.msg(data.Message);
+                        window.location.href = "@Url.Action("Message","Home")";
+                    } else {
+                        layer.msg('处理失败' + data.Message);
+                    }
+                    $("#valiCode").click();
+                    layer.close(index);
+                }
+            });
+        }
+    </script>
+
+}
