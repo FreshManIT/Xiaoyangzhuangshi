@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using FreshCommonUtility.Configure;
 using FreshCommonUtility.DataConvert;
@@ -41,11 +42,56 @@ namespace xyzs.web.Controllers
         /// <summary>
         /// 材料列表
         /// </summary>
+        /// <param name="productType">材料分类</param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
         /// <returns></returns>
-        public ActionResult ProductList()
+        public ActionResult ProductList(string productType = null, int page = 1, int pageSize = 8)
         {
             ViewBag.Action = "ProductList";
-            return View();
+            var resultModel = new List<MaterialProductModel>();
+            #region [获取分类]
+            var server = new SysDicService();
+            var data = server.GetAllDict("ProductType");
+            if (data == null || data.Count < 1)
+            {
+                return View(resultModel);
+            }
+
+            data = data.OrderByDescending(f => f.Sort).ToList();
+            var productName = string.Empty;
+            if (string.IsNullOrEmpty(productType) || data.FirstOrDefault(f => f.Id == productType) == null)
+            {
+                var dicModel = data.OrderByDescending(r => r.Sort).FirstOrDefault();
+                productType = dicModel?.Id;
+                productName = dicModel?.Lable;
+            }
+
+            if (string.IsNullOrEmpty(productName))
+            {
+                productName = data.FirstOrDefault(f => f.Id == productType)?.Lable;
+            }
+            ViewBag.ProductType = productType;
+            ViewBag.ProductTypeName = productName;
+            ViewBag.ProductTypeList = data;
+            #endregion
+
+            #region [获取产品列表]
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+            pageSize = pageSize < 1 ? PageSize : pageSize;
+            var materialServer = new MaterialProductService();
+            resultModel = materialServer.GetList(productType, page, pageSize, out var count);
+
+            ViewBag.Total = count;
+            ViewBag.Page = page;
+            ViewBag.PageCount = count / pageSize + (count % pageSize > 0 ? 1 : 0);
+            #endregion
+
+            return View(resultModel);
         }
 
         /// <summary>

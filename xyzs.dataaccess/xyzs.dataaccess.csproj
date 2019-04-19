@@ -101,6 +101,7 @@
     <Compile Include="DbLinkTestData.cs" />
     <Compile Include="MenuData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MaterialProductData.cs" />
     <Compile Include="ResourceData.cs" />
     <Compile Include="SysAdvertiseData.cs" />
     <Compile Include="SysContentData.cs" />

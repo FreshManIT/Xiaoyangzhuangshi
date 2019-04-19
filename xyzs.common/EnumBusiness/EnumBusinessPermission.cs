@@ -103,5 +103,20 @@ namespace xyzs.common.EnumBusiness
         [Description("留言列表")]
         CustomerCommentList=5002,
         #endregion
+
+        #region [6、产品配置]
+
+        /// <summary>
+        /// 产品配置
+        /// </summary>
+        [Description("产品配置")]
+        MaterialProductManage = 6001,
+
+        /// <summary>
+        /// 产品列表
+        /// </summary>
+        [Description("产品列表")]
+        MaterialProductList = 6002,
+        #endregion
     }
 }

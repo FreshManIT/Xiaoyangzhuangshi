@@ -46,6 +46,7 @@
     <Compile Include="DbLinkTestService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MaterialProductService.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="SysAdvertiseService.cs" />
     <Compile Include="SysDicService.cs" />

@@ -287,6 +287,12 @@ function saveDataInfo() {
     });
 }
 
+layer.ready(function () {
+    layer.photos({
+        photos: '#Images'
+    });
+});
+
 /**
 初始化页面
 */

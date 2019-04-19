@@ -157,6 +157,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\CustomerCommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterialProductController.cs" />
     <Compile Include="Controllers\PermissionAttribute.cs" />
     <Compile Include="Controllers\SysAdvertiseController.cs" />
     <Compile Include="Controllers\SysResourceController.cs" />
@@ -368,6 +369,7 @@
     <Content Include="Content\Scripts\Content\contentedit.js" />
     <Content Include="Content\Scripts\Content\contentlist.js" />
     <Content Include="Content\Scripts\CustomerComment\customercomment.js" />
+    <Content Include="Content\Scripts\MaterialProduct\materialproduct.js" />
     <Content Include="Content\Scripts\SysResource\sysresource.js" />
     <Content Include="Content\Scripts\SysSet\menuadmin.js" />
     <Content Include="Content\Scripts\SysSet\menuset.js" />
@@ -712,6 +714,7 @@
     <Content Include="Views\SysResource\ResourceList.cshtml" />
     <Content Include="Views\SysAdvertise\SysAdvertiseList.cshtml" />
     <Content Include="Views\CustomerComment\CustomerCommentList.cshtml" />
+    <Content Include="Views\MaterialProduct\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">
