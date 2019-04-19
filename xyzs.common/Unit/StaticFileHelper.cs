@@ -47,7 +47,7 @@ namespace xyzs.common.Unit
             if (path.StartsWith("~"))
                 return helper.Content(path);
             else
-                return GetStaticServiceUri() + rootUrl + path;
+                return rootUrl + path;
         }
 
         public static string JsCssFile(this UrlHelper helper, string path)

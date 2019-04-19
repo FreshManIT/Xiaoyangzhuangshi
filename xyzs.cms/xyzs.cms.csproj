@@ -623,7 +623,6 @@
     <Content Include="UEditor\third-party\highcharts\themes\skies.js" />
     <Content Include="UEditor\third-party\jquery-1.10.2.js" />
     <Content Include="UEditor\third-party\jquery-1.10.2.min.js" />
-    <Content Include="UEditor\third-party\snapscreen\UEditorSnapscreen.exe" />
     <Content Include="UEditor\third-party\SyntaxHighlighter\shCore.js" />
     <Content Include="UEditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
     <Content Include="UEditor\third-party\video-js\font\vjs.svg" />
@@ -715,6 +714,7 @@
     <Content Include="Views\SysAdvertise\SysAdvertiseList.cshtml" />
     <Content Include="Views\CustomerComment\CustomerCommentList.cshtml" />
     <Content Include="Views\MaterialProduct\ProductList.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\xyzs.common\xyzs.common.csproj">
