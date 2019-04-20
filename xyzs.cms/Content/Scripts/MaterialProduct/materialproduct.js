@@ -1,4 +1,6 @@
-﻿var resultVm = new Vue({
+﻿//根目录
+var hidRootUrl = $("#hidRootNode").val();
+var resultVm = new Vue({
     el: '#resultTable',
     data: {
         dataList: [],
@@ -75,7 +77,7 @@ var searchVm = new Vue({
  */
 function GetAllProductType() {
     $.ajax({
-        url: "/MaterialProduct/GetProductType",
+        url: hidRootUrl + "/MaterialProduct/GetProductType",
         type: "POST",
         success: function (data) {
             if (data && data.ResultCode == 0) {
@@ -94,7 +96,7 @@ function LoadingActivityResultDetailDate() {
     $(".loading-container").removeClass("loading-inactive");
     searchVm.$data.pageIndex = $("#currentPageIndex").val();
     $.ajax({
-        url: "/MaterialProduct/ResourceListPage",
+        url: hidRootUrl + "/MaterialProduct/ResourceListPage",
         type: "POST",
         data: searchVm.$data,
         success: function (data) {
@@ -137,7 +139,7 @@ var detailVm = new Vue({
             Id: 0,
             ProductName: "",
             ProductType: '',
-            ProductResourceUrl:'',
+            ProductResourceUrl: '',
             ResourceRemark: "",
             Sort: 0
         },
@@ -146,7 +148,7 @@ var detailVm = new Vue({
     methods: {
         initImageUrl(url) {
             if (url) return url;
-            return '/Content/Images/upload.png';
+            return hidRootUrl + '/Content/Images/upload.png';
         },
         fileClick() {
             document.getElementById('resource_upload_file').click();
@@ -172,7 +174,7 @@ var detailVm = new Vue({
             var formData = new FormData();
             formData.append("file", file);
             $.ajax({
-                url: '/SysSet/PutImageToSys',
+                url: hidRootUrl + '/SysSet/PutImageToSys',
                 type: "POST",
                 data: formData,
                 contentType: false,
@@ -218,7 +220,7 @@ function newResource() {
 function saveDataInfo() {
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax("/MaterialProduct/SaveResourceInfo", {
+    $.ajax(hidRootUrl + "/MaterialProduct/SaveResourceInfo", {
         type: "POST",
         data: detailVm.$data.detail_model,
         success: function (result) {
@@ -251,7 +253,7 @@ function editContent(id) {
     initViewModel();
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax("/MaterialProduct/GetModel?id=" + id, {
+    $.ajax(hidRootUrl + "/MaterialProduct/GetModel?id=" + id, {
         type: "POST",
         success: function (result) {
             if (result && result.ResultCode == 0 && result.Data) {
@@ -325,7 +327,7 @@ function delAll() {
 function do_del(ids) {
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax("/MaterialProduct/DelResourceModels", {
+    $.ajax(hidRootUrl + "/MaterialProduct/DelResourceModels", {
         type: "POST",
         data: { ids: ids },
         success: function (result) {

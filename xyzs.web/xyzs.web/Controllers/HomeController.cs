@@ -273,7 +273,7 @@ namespace xyzs.web.Controllers
             {
                 preNextList.ForEach(f =>
                 {
-                    if (f.CreateTime > model.CreateTime)
+                    if (f.Id > model.Id)
                     {
                         ViewBag.Next = f;
                     }

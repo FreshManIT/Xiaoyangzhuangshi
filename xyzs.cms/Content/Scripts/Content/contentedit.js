@@ -43,13 +43,13 @@ function addContentInfo() {
     //加载
     $(".loading-container").removeClass("loading-inactive");
     $.ajax({
-        url: "/Content/AddContentInfo",
+        url: hidRootUrl + "/Content/AddContentInfo",
         type: "POST",
         data: detailVm.$data.content_model,
         success: function (data) {
             if (data && data.ResultCode == 0) {
                 layer.msg(data.Message);
-                window.location.href = "/Content/ContentList";
+                window.location.href = hidRootUrl + "/Content/ContentList";
             }
             else {
                 layer.msg('处理失败');
@@ -66,7 +66,7 @@ function addContentInfo() {
 function getContentInfo() {
     var id = $("#id").val();
     $.ajax({
-        url: "/Content/GetContentInfo",
+        url: hidRootUrl + "/Content/GetContentInfo",
         type: "POST",
         data: { id: id },
         success: function (data) {
@@ -89,7 +89,7 @@ function getContentInfo() {
  */
 function getTypeList() {
     $.ajax({
-        url: "/Content/GetContentType",
+        url: hidRootUrl + "/Content/GetContentType",
         type: "POST",
         success: function (data) {
             if (data && data.ResultCode == 0) {

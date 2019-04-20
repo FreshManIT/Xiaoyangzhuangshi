@@ -14,15 +14,13 @@
             </div>
 
             @*<div class="search-box div-inline">
-                <div class="input-box"><input type="text" name="" placeholder="请输入关键字"></div>
-                <div class="search-botton"></div>
-            </div>*@
+                    <div class="input-box"><input type="text" name="" placeholder="请输入关键字"></div>
+                    <div class="search-botton"></div>
+                </div>*@
         </div>
     </div>
     <div class="header-nav">
-        <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">
-            Menu <i class="am-icon-bars"></i>
-        </button>
+
         <nav>
             <ul class="header-nav-ul am-collapse am-in">
                 <li class='@(ViewBag.Action=="Index"?"on":"")'><a href="@Url.Action("Index","Home")" name="Index">首页</a></li>

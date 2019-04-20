@@ -1,4 +1,6 @@
-﻿var resultVm = new Vue({
+﻿//根目录
+var hidRootUrl = $("#hidRootNode").val();
+var resultVm = new Vue({
     el: '#resultTable',
     data: {
         dataList: [],
@@ -58,7 +60,7 @@ function LoadingActivityResultDetailDate() {
     $(".loading-container").removeClass("loading-inactive");
     searchVm.$data.model.pageIndex = $("#currentPageIndex").val();
     $.ajax({
-        url: "/Content/GetList",
+        url: hidRootUrl + "/Content/GetList",
         type: "POST",
         data: searchVm.$data.model,
         success: function (data) {
@@ -126,7 +128,7 @@ function delContent(id) {
  * @param {any} id
  */
 function editContent(id) {
-    window.location.href = "/Content/ContentEdit?id=" + id;
+    window.location.href = hidRootUrl + "/Content/ContentEdit?id=" + id;
 }
 
 /**
@@ -134,7 +136,7 @@ function editContent(id) {
  */
 function getTypeList() {
     $.ajax({
-        url: "/Content/GetContentType",
+        url: hidRootUrl + "/Content/GetContentType",
         type: "POST",
         success: function (data) {
             if (data && data.ResultCode == 0) {
