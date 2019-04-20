@@ -239,7 +239,7 @@ namespace xyzs.web.Controllers
             ViewBag.Total = total;
             ViewBag.Page = page;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
-            ViewBag.Url = ViewBag.RootNote + "/Home/ArticList";
+            ViewBag.Url = ViewBag.RootNode + "/Home/ArticList";
             return View(contentList);
         }
 
