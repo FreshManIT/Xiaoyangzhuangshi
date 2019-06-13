@@ -8,10 +8,10 @@
 {
     <style>
         .gongyijianjie {
-            width: 1100px;
+            width: 80%;
             margin: 0 auto;
             overflow: hidden;
-            border: 3px solid #fba935;
+            border: 2px solid #fba935;
         }
 
         .gongyi_title {
@@ -22,46 +22,55 @@
             border-top: 3px solid #fba935;
             text-align: center;
             font-size: 20px;
-            color: #46e6b0;
+            color: #099ca7;
         }
 
         .jianjie_info {
             padding: 30px;
+            margin: 10px;
+            border: 1px dashed #fba935;
         }
 
         .gongyiinfo {
-            width: 1100px;
-            margin: 0 auto;
+            width: 80%;
+            margin: 25px auto;
             overflow: hidden;
         }
 
         .number_border {
             -ms-border-radius: 50%;
             border-radius: 50%;
-            height: 20px;
-            width: 20px;
+            height: 30px;
+            width: 30px;
             display: inline-block;
-            background: #46e6b0;
+            background: #099ca7;
             vertical-align: top;
         }
 
         .number {
             display: block;
             color: #ffffff;
-            height: 20px;
-            line-height: 20px;
+            height: 30px;
+            line-height: 30px;
             text-align: center
         }
 
         .color_blue {
-            color: #46e6b0;
+            color: #099ca7;
         }
-        .row .col {
+        .row {
+            margin: 10px auto;
+        }
+        .row .col_l {
             float: left;
-            width: 33%;
+            width: 38%;
         }
+        .row .col_r {
+            float: right;
+        }
+
         .image_gongyi {
-            width: 250px;
+            width: 270px;
             height: 200px;
             -ms-border-radius: 20px;
             border-radius: 20px;
@@ -80,17 +89,47 @@
     </div>
     <div class="gongyi_title">工艺要求</div>
     <div class="gongyiinfo">
-        <div>
-            <span class="number_border">
-                <span class="number"> 1</span>
-            </span>
-            <span class="color_blue">水电材料及工艺：</span>强电采用鸽牌铜芯线、&Phi;16“得亿”PVC中型穿线管，尽量顶面或普通墙内走线（包括强电走线所需梁、墙面开孔）；弱电采用“秋叶原”六类双屏蔽千兆弱电线、“得亿”PVC中型穿线管，弱电线路尽量顶面或者墙面走线，线路铺设符合设计要求，横平竖直；弱电线单独分组穿管，避免强电干扰，线路不得在管内接头、扭结、保持畅通、无短路，水管质保50年。
-        </div>
+        <span class="number_border">
+            <span class="number"> 1</span>
+        </span>
+        <span class="color_blue">水电材料及工艺：</span>强电采用鸽牌铜芯线、&Phi;16“得亿”PVC中型穿线管，尽量顶面或普通墙内走线（包括强电走线所需梁、墙面开孔）；弱电采用“秋叶原”六类双屏蔽千兆弱电线、“得亿”PVC中型穿线管，弱电线路尽量顶面或者墙面走线，线路铺设符合设计要求，横平竖直；弱电线单独分组穿管，避免强电干扰，线路不得在管内接头、扭结、保持畅通、无短路，水管质保50年。
         <div class="row">
-            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/weixinguan.jpg" /></div>
-            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/shuiguan.jpg" /></div>
-            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/dianguan.jpg" /></div>
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/weixinguan.jpg" /></div>
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/shuiguan.jpg" /></div>
+            <div class="col_r"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/dianguan.jpg" /></div>
         </div>
     </div>
-
+    <div class="gongyiinfo">
+        <span class="number_border">
+            <span class="number"> 2</span>
+        </span>
+        <span class="color_blue">泥作材料及工艺：</span>“劳亚尔”通用型胶浆防水，按施工要求进行满涂、涂刷厚度不低于0.2mm、管根及墙地面合处重点涂刷，墙根结合处和管根结合处应做弧度处理。地面防水涂刷应延伸至墙面200MM；下沉式用水区做三次防水。管线施工完成及回填前做一次防水处理回填后即贴面砖前做两次防水处理；第一次防水完成后即用红砖包围下水管道用沙灰抹平后进行保护。瓷砖采用1：2或1：2.5的32.5#“拉法基”水泥砂浆铺贴；铺装饱满，达到国家相关标准，无污痕，图案清晰，接缝均匀，边缘整齐；满足坡度要求，无泛水、无积水，与地漏接合牢固、表面平整，水平，接缝横平竖直。
+        <div class="row">
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/21.jpg" /></div>
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/22.jpg" /></div>
+            <div class="col_r"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/23.jpg" /></div>
+        </div>
+    </div>
+    <div class="gongyiinfo">
+        <span class="number_border">
+            <span class="number"> 3</span>
+        </span>
+        <span class="color_blue">木作材料及工艺：</span>天花吊顶主龙骨间距不大于1000mm，副龙骨间距不大于400mm，“泰山”石膏板封面，局部采用木骨，天棚吊顶边吊转角处采用7字型整体石膏板；安装牢固、表面接缝平整、接缝处贴牛皮纸或嵌缝带；符合设计要求、所有连接件必须牢固；嵌装灯具等具体的位置有加固处理、吊顶的垂直固定吊杆不得采用木榫固定、木龙骨须刷防火涂料。
+        <div class="row">
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/31.jpg" /></div>
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/32.jpg" /></div>
+            <div class="col_r"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/33.jpg" /></div>
+        </div>
+    </div>
+    <div class="gongyiinfo">
+        <span class="number_border">
+            <span class="number"> 4</span>
+        </span>
+        <span class="color_blue">漆作材料及工艺：</span>墙面采用“雪山冕宁”墙面专用滑石粉兑“兴渝”腻子胶水批刮三遍并打磨平顺，墙体阳角基层加装阳角条。基层处理完毕后测试平整度、光滑、干燥、接缝处须抹平并贴牛皮纸或嵌缝条、对有钉的接点要进行防锈处理。采用多乐士环保乳胶漆进行涂，标准厚度超过15丝以上、同品牌专用底漆滚涂打底一遍、乳胶漆滚或刷涂两遍；凡采用滚涂方式必须对边沿墙角处用软羊毛刷收尾。
+        <div class="row">
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/41.jpg" /></div>
+            <div class="col_l"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/42.jpg" /></div>
+            <div class="col_r"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/43.jpg" /></div>
+        </div>
+    </div>
 </div>
