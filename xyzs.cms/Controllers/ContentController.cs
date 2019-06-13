@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using FreshCommonUtility.Web;
@@ -78,7 +77,7 @@ namespace xyzs.cms.Controllers
                 model.Introduction = introduction != null && introduction.Length > 200 ? introduction.Substring(0, 200) : introduction;
             }
             var server = new ContentService();
-            var id = 0L;
+            long id;
             if (model.Id > 0)
             {
                 var oldModel = server.GetContentModel(model.Id);

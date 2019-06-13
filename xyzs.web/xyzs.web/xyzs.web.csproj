@@ -349,6 +349,7 @@
     <Content Include="Views\Home\ArticList.cshtml" />
     <Content Include="Views\Home\ArticleDetail.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Home\Technique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\xyzs.common\xyzs.common.csproj">

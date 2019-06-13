@@ -1,0 +1,96 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "晓杨装饰工艺";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css
+{
+    <style>
+        .gongyijianjie {
+            width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 3px solid #fba935;
+        }
+
+        .gongyi_title {
+            width: 200px;
+            margin: 10px auto;
+            overflow: hidden;
+            border-bottom: 3px solid #fba935;
+            border-top: 3px solid #fba935;
+            text-align: center;
+            font-size: 20px;
+            color: #46e6b0;
+        }
+
+        .jianjie_info {
+            padding: 30px;
+        }
+
+        .gongyiinfo {
+            width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .number_border {
+            -ms-border-radius: 50%;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            display: inline-block;
+            background: #46e6b0;
+            vertical-align: top;
+        }
+
+        .number {
+            display: block;
+            color: #ffffff;
+            height: 20px;
+            line-height: 20px;
+            text-align: center
+        }
+
+        .color_blue {
+            color: #46e6b0;
+        }
+        .row .col {
+            float: left;
+            width: 33%;
+        }
+        .image_gongyi {
+            width: 250px;
+            height: 200px;
+            -ms-border-radius: 20px;
+            border-radius: 20px;
+        }
+    </style>
+}
+<div>
+    <div class="gongyi_title">晓杨装饰工艺</div>
+    <div class="gongyijianjie">
+        <div class="jianjie_info">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;“灵心胜造物，妙手夺天工。”</p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;我们经过多年的施工实践累积，根据中国建筑特性对施工工艺不断沉淀、创新，为客户提供行业尖端装饰施工方案；我们一直以来追求精湛工艺、合理价格、诚信经营，通过标准的设立、完善的售后以及严苛的监督机制，让客户可以真正的享受放心家装。
+            </p>
+        </div>
+    </div>
+    <div class="gongyi_title">工艺要求</div>
+    <div class="gongyiinfo">
+        <div>
+            <span class="number_border">
+                <span class="number"> 1</span>
+            </span>
+            <span class="color_blue">水电材料及工艺：</span>强电采用鸽牌铜芯线、&Phi;16“得亿”PVC中型穿线管，尽量顶面或普通墙内走线（包括强电走线所需梁、墙面开孔）；弱电采用“秋叶原”六类双屏蔽千兆弱电线、“得亿”PVC中型穿线管，弱电线路尽量顶面或者墙面走线，线路铺设符合设计要求，横平竖直；弱电线单独分组穿管，避免强电干扰，线路不得在管内接头、扭结、保持畅通、无短路，水管质保50年。
+        </div>
+        <div class="row">
+            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/weixinguan.jpg" /></div>
+            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/shuiguan.jpg" /></div>
+            <div class="col"><img class="image_gongyi" src="@(ViewBag.RootNode)/Content/images/dianguan.jpg" /></div>
+        </div>
+    </div>
+
+</div>

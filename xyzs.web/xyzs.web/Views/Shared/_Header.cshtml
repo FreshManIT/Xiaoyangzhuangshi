@@ -24,9 +24,10 @@
         <nav>
             <ul class="header-nav-ul am-collapse am-in">
                 <li class='@(ViewBag.Action=="Index"?"on":"")'><a href="@Url.Action("Index","Home")" name="Index">首页</a></li>
-                <li class='@(ViewBag.Action=="About"?"on":"")'><a href="@Url.Action("About","Home")" name="About">关于我们</a></li>
+                <li class='@(ViewBag.Action=="Technique"?"on":"")'><a href="@Url.Action("Technique","Home")" name="Technique">装饰工艺</a></li>
                 <li class='@(ViewBag.Action=="ProductList"?"on":"")'><a href="@Url.Action("ProductList","Home")" name="ProductList">案例展示</a></li>
                 <li class='@(ViewBag.Action=="ArticList"?"on":"")'><a href="@Url.Action("ArticList","Home")" name="ArticList">新闻资讯</a></li>
+                <li class='@(ViewBag.Action=="About"?"on":"")'><a href="@Url.Action("About","Home")" name="About">关于我们</a></li>
                 <li class='@(ViewBag.Action=="Contact"?"on":"")'>
                     <a href="@Url.Action("Contact","Home")" name="message">联系我们</a>
                     <div class="secondary-menu">

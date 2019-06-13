@@ -29,6 +29,16 @@ namespace xyzs.web.Controllers
         }
 
         /// <summary>
+        /// 装饰工艺
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Technique()
+        {
+            ViewBag.Action = "Technique";
+            return View();
+        }
+
+        /// <summary>
         /// 关于我们
         /// </summary>
         /// <returns></returns>
