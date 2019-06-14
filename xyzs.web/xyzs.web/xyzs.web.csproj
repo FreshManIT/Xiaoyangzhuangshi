@@ -160,13 +160,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\sensitive.txt" />
+    <Content Include="Content\css\default-min.css" />
     <Content Include="Content\css\default.css" />
-    <Content Include="Content\css\default.min.css" />
+    <Content Include="Content\images\21.jpg" />
+    <Content Include="Content\images\22.jpg" />
+    <Content Include="Content\images\23.jpg" />
+    <Content Include="Content\images\31.jpg" />
+    <Content Include="Content\images\32.jpg" />
+    <Content Include="Content\images\33.jpg" />
+    <Content Include="Content\images\41.jpg" />
+    <Content Include="Content\images\42.jpg" />
+    <Content Include="Content\images\43.jpg" />
     <Content Include="Content\images\address.png" />
     <Content Include="Content\images\banner4.jpg" />
     <Content Include="Content\images\case.png" />
     <Content Include="Content\images\chair.png" />
     <Content Include="Content\images\chairs.png" />
+    <Content Include="Content\images\chengxin.png" />
     <Content Include="Content\images\contact.jpg" />
     <Content Include="Content\images\contact.png" />
     <Content Include="Content\images\contact1.png" />
@@ -174,7 +184,13 @@
     <Content Include="Content\images\contact3.png" />
     <Content Include="Content\images\creativity.png" />
     <Content Include="Content\images\creativitys.png" />
+    <Content Include="Content\images\dianguan.jpg" />
     <Content Include="Content\images\email.png" />
+    <Content Include="Content\images\hai.png" />
+    <Content Include="Content\images\index11.png" />
+    <Content Include="Content\images\index12.png" />
+    <Content Include="Content\images\index21.png" />
+    <Content Include="Content\images\index22.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\message.png" />
     <Content Include="Content\images\next.png" />
@@ -191,12 +207,14 @@
     <Content Include="Content\images\qccode.png" />
     <Content Include="Content\images\search-button.png" />
     <Content Include="Content\images\sectionbanner.png" />
+    <Content Include="Content\images\shuiguan.jpg" />
     <Content Include="Content\images\slogan.png" />
     <Content Include="Content\images\sofa.png" />
     <Content Include="Content\images\sofas.png" />
     <Content Include="Content\images\table.png" />
     <Content Include="Content\images\tables.png" />
     <Content Include="Content\images\tel.png" />
+    <Content Include="Content\images\weixinguan.jpg" />
     <Content Include="Content\js\easyzoom.js" />
     <Content Include="Content\js\layer\layer.js" />
     <Content Include="Content\js\layer\mobile\layer.js" />
