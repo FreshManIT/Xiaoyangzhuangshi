@@ -243,6 +243,26 @@ CREATE TABLE `sysusermenu`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for procedurehistory
+-- ----------------------------
+DROP TABLE IF EXISTS `procedurehistory`;
+CREATE TABLE `procedurehistory`  (
+  `Id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ProcedureCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工序编号',
+  `ProcedureName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '工序名称',
+  `CustomerId` bigint(255) NULL DEFAULT NULL COMMENT '客户id',
+  `CustomerName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '客户姓名',
+  `ResourceUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源路径',
+  `ResourceName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源名称',
+  `CreateBy` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `CreateTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `Remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `IsDel` int(255) NULL DEFAULT NULL COMMENT '是否已经删除0：未删除，1：已经删除',
+  `Sort` decimal(10, 0) NULL DEFAULT NULL COMMENT '排序值',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Records of sysusermenu
 -- ----------------------------
 INSERT INTO `sysusermenu` VALUES (66, 1, 10, 0);

@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DatabaseModel\CustomercommentModel.cs" />
     <Compile Include="DatabaseModel\MaterialProductModel.cs" />
+    <Compile Include="DatabaseModel\ProcedurehistoryModel.cs" />
     <Compile Include="DatabaseModel\SysadvertisementModel.cs" />
     <Compile Include="DatabaseModel\Syscontent.cs" />
     <Compile Include="DatabaseModel\SysdictModel.cs" />
