@@ -16,10 +16,11 @@ namespace xyzs.dataaccess
         /// 获取信息
         /// </summary>
         /// <param name="procedureCode"></param>
+        /// <param name="userId"></param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<ProcedureHistoryModel> GetModels(string procedureCode, int pageIndex, int pageSize)
+        public List<ProcedureHistoryModel> GetModels(string procedureCode, long userId, int pageIndex, int pageSize)
         {
             var where = new StringBuilder(" where IsDel=@IsDel ");
 
@@ -27,10 +28,15 @@ namespace xyzs.dataaccess
             {
                 where.Append(" and ProcedureCode= @ProcedureCode ");
             }
+            if (userId > -1)
+            {
+                where.Append(" and CustomerId=@CustomerId ");
+            }
             var param = new
             {
                 IsDel = FlagEnum.HadZore.GetHashCode(),
-                ProcedureCode = procedureCode
+                ProcedureCode = procedureCode,
+                CustomerId = userId
             };
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
@@ -42,7 +48,7 @@ namespace xyzs.dataaccess
         /// 获取总记录数
         /// </summary>
         /// <returns></returns>
-        public int GetCount(string procedureCode)
+        public int GetCount(string procedureCode, long userId)
         {
             var where = new StringBuilder(" where IsDel=@IsDel ");
 
@@ -50,10 +56,16 @@ namespace xyzs.dataaccess
             {
                 where.Append(" and ProcedureCode= @ProcedureCode ");
             }
+
+            if (userId > -1)
+            {
+                where.Append(" and CustomerId=@CustomerId ");
+            }
             var param = new
             {
                 IsDel = FlagEnum.HadZore.GetHashCode(),
-                ProcedureCode = procedureCode
+                ProcedureCode = procedureCode,
+                CustomerId = userId
             };
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {

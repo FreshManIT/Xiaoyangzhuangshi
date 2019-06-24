@@ -91,6 +91,7 @@ function GetAllType() {
         success: function (data) {
             if (data && data.ResultCode == 0) {
                 searchVm.$data.contentTypeNum = data.Data;
+                searchVm.$data.contentTypeNum.splice(0, 0, { Id: "", Lable: "全部" });
                 resultVm.$data.contentTypeNum = data.Data;
                 detailVm.$data.all_parent_list = data.Data;
             }
@@ -108,6 +109,7 @@ function getAllUser() {
         success: function (data) {
             if (data && data.ResultCode == 0) {
                 searchVm.$data.userList = data.Data;
+                searchVm.$data.userList.splice(0, 0, { Id: -1, UserName : "全部" });
                 detailVm.$data.userList = data.Data;
             }
         }
@@ -138,7 +140,7 @@ function delContent(id) {
         , yes: function (indexOne) {
             layer.close(indexOne);
             var index = layer.load();
-            $.ajax(hidRootUrl + "/SysAdvertise/DelResourceModels", {
+            $.ajax(hidRootUrl + "/ProcedureHistory/DelResourceModels", {
                 type: "POST",
                 data: { ids: [id] },
                 success: function (result) {
@@ -171,7 +173,7 @@ function editContent(id) {
     initViewModel();
     //加载
     $(".loading-container").removeClass("loading-inactive");
-    $.ajax(hidRootUrl + "/SysAdvertise/GetModel?id=" + id, {
+    $.ajax(hidRootUrl + "/ProcedureHistory/GetModel?id=" + id, {
         type: "POST",
         success: function (result) {
             if (result && result.ResultCode == 0 && result.Data) {
@@ -199,11 +201,9 @@ var detailVm = new Vue({
         model: {
             Id: 0,
             ProcedureCode: "",
-            ProcedureName: "",
             CustomerId: "",
             Remarks: "",
             Sort: "",
-            CustomerName: 0,
             ResourceUrl: "",
             ResourceName: ""
         },

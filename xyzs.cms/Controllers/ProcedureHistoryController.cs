@@ -29,11 +29,12 @@ namespace xyzs.cms.Controllers
         /// 获取列表信息
         /// </summary>
         /// <param name="procedureCode"></param>
+        /// <param name="userId"></param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [Permission(EnumBusinessPermission.ProcedureHistoryList)]
-        public ActionResult ProcedureHistoryListPage(string procedureCode = null, int pageIndex = 1, int pageSize = 10)
+        public ActionResult ProcedureHistoryListPage(string procedureCode = null,long userId=-1, int pageIndex = 1, int pageSize = 10)
         {
             if (pageIndex < 1)
             {
@@ -41,7 +42,7 @@ namespace xyzs.cms.Controllers
             }
             pageSize = pageSize < 1 ? PageSize : pageSize;
             var server = new ProcedureHistoryService();
-            var dataList = server.GetList(procedureCode, pageIndex, pageSize, out var count);
+            var dataList = server.GetList(procedureCode, userId, pageIndex, pageSize, out var count);
             var resultMode = new ResponseBaseModel<dynamic>
             {
                 ResultCode = ResponceCodeEnum.Success,
@@ -148,6 +149,12 @@ namespace xyzs.cms.Controllers
                     model.CustomerName = userModel.UserName;
                 }
             }
+            else
+            {
+                resultMode.Message = "请选择所属客户";
+                resultMode.ResultCode = ResponceCodeEnum.Fail;
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
+            }
 
             if (!string.IsNullOrEmpty(model.ProcedureCode))
             {
@@ -160,6 +167,12 @@ namespace xyzs.cms.Controllers
                 }
 
                 model.ProcedureName = dicModel.Lable;
+            }
+            else
+            {
+                resultMode.Message = "请选择工序类型";
+                resultMode.ResultCode = ResponceCodeEnum.Fail;
+                return Json(resultMode, JsonRequestBehavior.AllowGet);
             }
 
             saveModel.Id = model.Id;
@@ -232,6 +245,46 @@ namespace xyzs.cms.Controllers
             var server = new ProcedureHistoryService();
             var data = server.Get(id);
             resultMode.Data = data;
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region [2、个人工序信息查看]
+
+        /// <summary>
+        /// 个人工序存档信息查看
+        /// </summary>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ProcedureHistorySelf)]
+        public ActionResult ProcedureHistorySelf()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 获取资源列表信息
+        /// </summary>
+        /// <param name="procedureCode"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [Permission(EnumBusinessPermission.ProcedureHistorySelf)]
+        public ActionResult ResourceListPage(string procedureCode = null, int pageIndex = 1, int pageSize = 10)
+        {
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+            pageSize = pageSize < 1 ? PageSize : pageSize;
+            var userId = CurrentModel.UserId;
+            var server = new ProcedureHistoryService();
+            var dataList = server.GetList(procedureCode, userId, pageIndex, pageSize, out var count);
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Success,
+                Message = "响应成功",
+                Data = new { count, dataList }
+            };
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
         #endregion

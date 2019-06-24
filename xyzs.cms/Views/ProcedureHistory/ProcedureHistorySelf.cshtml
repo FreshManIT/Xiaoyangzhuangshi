@@ -1,0 +1,69 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "装修工序存档信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css
+{
+    <link href="@(ViewBag.RootNode)/Assets/css/PagerStyle.css" rel="stylesheet" type="text/css">
+    <link href="@(ViewBag.RootNode)/Content/Styles/Resource/resoucelist.css" rel="stylesheet" />
+}
+
+<div class="widget widget-body">
+    <div class="panel panel-default">
+        <form class="panel-body" action="" id="form1">
+            <div class="form-inline control-left">
+                <label>
+                    工序类型：
+                    <select class="form-control input-sm" style="min-width: 130px"
+                            name="type" v-model="procedureCode">
+                        <option v-for="item in contentTypeNum" v-bind:value="item.Id">
+                            {{item.Lable}}
+                        </option>
+                    </select>
+                </label>
+                <button type="button" onclick="LoadingActivityResultDetailDate();"
+                        class="btn btn-success" title="查询" value="查询">
+                    查询<i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="resultTable">
+        <ul id="Images">
+            <li v-for="item of dataList">
+                <img :src="item.ResourceUrl" style="height: 176px;" :alt="item.Remarks">
+                <span class="image-top-tip">{{item.ProcedureName}}</span>
+                <div class="operate">
+                    <div class="check">
+                        <div class="checkbox">
+                            <label>
+                                <span class="word-more-white-space">{{item.ResourceName}}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td>
+                    <div id="pager">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--当前页码-->
+    <input type="hidden" id="currentPageIndex" value="1">
+</div>
+@section Script
+{
+    <script src="@(ViewBag.RootNode)/Assets/js/PagerView.js"></script>
+    <script src="@(ViewBag.RootNode)/Content/Scripts/ProcedureHistory/procedureself.js"></script>
+}
+

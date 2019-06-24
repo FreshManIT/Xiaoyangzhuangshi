@@ -14,7 +14,16 @@
             <form class="panel-body" action="" id="form1">
                 <div class="form-inline control-left">
                     <label>
-                        类型：
+                        所属用户：
+                        <select class="form-control input-sm" style="min-width: 130px"
+                                name="type" v-model="model.userId">
+                            <option v-for="item in userList" v-bind:value="item.Id">
+                                {{item.UserName}}
+                            </option>
+                        </select>
+                    </label>
+                    <label>
+                        工序：
                         <select class="form-control input-sm" style="min-width: 130px"
                                 name="type" v-model="model.procedureCode">
                             <option v-for="item in contentTypeNum" v-bind:value="item.Id">
@@ -34,11 +43,9 @@
             <table class="table table-bordered  table-hover ">
                 <thead class="flip-content bordered-palegreen">
                     <tr class="control-center">
-                        <th>广告名称</th>
-                        <th>广告语</th>
-                        <th>类型</th>
-                        <th>描述</th>
-                        <th>链接</th>
+                        <th>工序名称</th>
+                        <th>客户姓名</th>
+                        <th>资源名称</th>
                         <th>图片</th>
                         <th>创建时间</th>
                         <th>排序值</th>
@@ -48,11 +55,9 @@
                 </thead>
                 <tbody>
                     <tr class="control-center" v-for="item of dataList">
-                        <td>{{item.AdvertiName}}</td>
-                        <td>{{item.AdvertiTip}}</td>
-                        <td>{{vueTypeContent(item.AdvertiType)}}</td>
-                        <td>{{item.Remarks}}</td>
-                        <td>{{item.AdvertiUrl}}</td>
+                        <td>{{item.ProcedureName}}</td>
+                        <td>{{item.CustomerName}}</td>
+                        <td>{{item.ResourceName}}</td>
                         <td><img :src="item.ResourceUrl" style="max-width: 150px; max-height: 100px;" /></td>
                         <td>{{item.CreateTime}}</td>
                         <td>{{item.Sort}}</td>

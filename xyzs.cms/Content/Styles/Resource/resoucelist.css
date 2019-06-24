@@ -9,6 +9,7 @@
         float: left;
         overflow: hidden;
         border: 1px solid #ece3e3;
+        position: relative;
     }
 
         #Images li img {
@@ -50,6 +51,50 @@
                 #Images li .operate .img_edit:hover {
                     color: #008000;
                 }
+
+.image-top-tip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 30px;
+    background: #000;
+    display: block;
+    zoom: 1;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    width: 100%;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.image-bottom-tip {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    background: #000;
+    display: block;
+    zoom: 1;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    width: 100%;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.word-more-white-space {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 @media screen and (max-width:1050px) {
     #Images li {

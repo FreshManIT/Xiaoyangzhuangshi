@@ -20,14 +20,15 @@ namespace xyzs.service
         /// 获取内容
         /// </summary>
         /// <param name="procedureCode"></param>
+        /// <param name="userId"></param>
         /// <param name="indexPage"></param>
         /// <param name="pageSize"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public List<ProcedureHistoryModel> GetList(string procedureCode, int indexPage, int pageSize, out int count)
+        public List<ProcedureHistoryModel> GetList(string procedureCode,long userId, int indexPage, int pageSize, out int count)
         {
-            count = _dataAccess.GetCount(procedureCode);
-            return _dataAccess.GetModels(procedureCode, indexPage, pageSize);
+            count = _dataAccess.GetCount(procedureCode,userId);
+            return _dataAccess.GetModels(procedureCode,userId, indexPage, pageSize);
         }
 
         /// <summary>
