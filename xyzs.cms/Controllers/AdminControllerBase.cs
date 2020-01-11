@@ -5,11 +5,14 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FreshCommonUtility.Configure;
 using FreshCommonUtility.Cookie;
+using FreshCommonUtility.DataConvert;
 using FreshCommonUtility.Enum;
 using FreshCommonUtility.Security;
 using Newtonsoft.Json;
 using xyzs.common.CustomerAttribute;
+using xyzs.common.Unit;
 using xyzs.model;
 using xyzs.service;
 
@@ -17,17 +20,6 @@ namespace xyzs.cms.Controllers
 {
     public abstract class AdminControllerBase : ControllerBase
     {
-        /// <summary>
-        /// Cache或者Cookie的Key前缀
-        /// </summary>
-        public virtual string KeyPrefix
-        {
-            get
-            {
-                return "Context_";
-            }
-        }
-
         private int _userExpiresHours = 10;
         public virtual int UserExpiresHours
         {
@@ -58,7 +50,7 @@ namespace xyzs.cms.Controllers
         {
             get
             {
-                var u = CookieHelper.GetCookie(KeyPrefix + "UserInfo");
+                var u = CookieHelper.GetCookie(StaticFileHelper.UserCookieStr);
                 if (string.IsNullOrEmpty(u))
                 {
                     return null;
@@ -84,6 +76,33 @@ namespace xyzs.cms.Controllers
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            #region [1、验证是否在服务时间内]
+
+            var startTimeStr = AppConfigurationHelper.GetString("SystemRunStartTime");
+            var endTimeStr = AppConfigurationHelper.GetString("SystemRunEndTime");
+            //没有配置时间
+            if (!string.IsNullOrEmpty(startTimeStr) && !string.IsNullOrEmpty(endTimeStr))
+            {
+                var startTime = DataTypeConvertHelper.ToDateTime(startTimeStr);
+                var endTime = DataTypeConvertHelper.ToDateTime(endTimeStr);
+
+                if (startTime <= new DateTime(1900, 1, 1) || endTime <= new DateTime(1900, 1, 1))
+                {
+                    filterContext.Result = Request.UrlReferrer != null ? Stop("系统运行时间配置错误！", Request.UrlReferrer.AbsoluteUri) : Content("系统运行时间配置错误！");
+                    return;
+                }
+                startTime = new DateTime(1900, 1, 1, startTime.Hour, startTime.Minute, startTime.Second);
+                endTime = new DateTime(1900, 1, 1, endTime.Hour, endTime.Minute, endTime.Second);
+                var newTime = DateTime.Now;
+                newTime = new DateTime(1900, 1, 1, newTime.Hour, newTime.Minute, newTime.Second);
+                if (newTime < startTime || newTime > endTime)
+                {
+                    filterContext.Result = Request.UrlReferrer != null ? Stop("系统处于维护期！", Request.UrlReferrer.AbsoluteUri) : Content("系统处于维护期！");
+                    return;
+                }
+            }
+
+            #endregion
             var noAuthorizeAttributes = filterContext.ActionDescriptor.GetCustomAttributes(typeof(AuthorizeIgnoreAttribute), false);
             if (noAuthorizeAttributes.Length > 0)
                 return;
@@ -220,7 +239,7 @@ namespace xyzs.cms.Controllers
             }
             catch (Exception)
             {
-                CookieHelper.SetCookie(KeyPrefix + "UserInfo", string.Empty);
+                CookieHelper.SetCookie(StaticFileHelper.UserCookieStr, string.Empty);
             }
         }
 

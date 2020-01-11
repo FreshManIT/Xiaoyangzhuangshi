@@ -9,6 +9,9 @@ namespace xyzs.cms
     {
         protected void Application_Start()
         {
+            //自定义加载引擎
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new MyRazorViewEngine());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

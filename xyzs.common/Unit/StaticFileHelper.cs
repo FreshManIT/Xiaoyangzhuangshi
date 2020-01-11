@@ -95,6 +95,6 @@ namespace xyzs.common.Unit
         /// <summary>
         /// 用户cookie key
         /// </summary>
-        public static string UserCookieStr = "Context_UserInfo";
+        public static string UserCookieStr = "Xyzs_Context_UserInfo";
     }
 }
